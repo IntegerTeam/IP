@@ -44,7 +44,7 @@ try (PrintWriter out = response.getWriter()) {
         int j = ps2.executeUpdate();
         
         if (i > 0)
-            response.sendRedirect("welcomelogin.jsp");
+            response.sendRedirect("LoginModule/welcomelogin.jsp");
         
     }
     catch (ClassNotFoundException | SQLException e2) {

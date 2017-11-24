@@ -55,7 +55,7 @@ body, html {
         <center><h4>WELCOME</h4></center>
     </header>
         
-      <form method="post" action="SignUpServlet" class="w3-container w3-card-4 w3-light-grey w3-text-grey w3-margin">
+      <form method="post" action="../SignUpServlet" class="w3-container w3-card-4 w3-light-grey w3-text-grey w3-margin">
         <h2 class="w3-center">SIGN-UP</h2>
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
@@ -95,7 +95,7 @@ body, html {
         <center><h4>WELCOME</h4></center>
     </header>
         
-      <form method="post" action="SignInServlet" class="w3-container w3-card-4 w3-light-grey w3-text-grey w3-margin">
+      <form method="post" action="../SignInServlet" class="w3-container w3-card-4 w3-light-grey w3-text-grey w3-margin">
         <h2 class="w3-center">SIGN-IN</h2>
         <div class="w3-row w3-section">
             <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
@@ -108,6 +108,14 @@ body, html {
                 <div class="w3-rest">
                     <input class="w3-input w3-border" name="password" type="password" placeholder="Password" required>
                 </div>
+        </div>
+        <div class="w3-row w3-section">
+        <center><input class="w3-radio" type="radio" name="level" value="manager" checked>
+        <label>Manager</label>
+        <input class="w3-radio" type="radio" name="level" value="staff">
+        <label>Staff</label>
+        <input class="w3-radio" type="radio" name="level" value="customer">
+        <label>Customer</label></center>
         </div>
         <button class="w3-button w3-block w3-section w3-dark-grey w3-ripple w3-padding">Submit</button>
       </form>      

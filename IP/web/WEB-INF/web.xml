@@ -13,4 +13,24 @@
             30
         </session-timeout>
     </session-config>
+    
+    <!--LoginModuleStart-->
+    <servlet>
+        <servlet-name>SignUpServlet</servlet-name>
+        <servlet-class>Authentication.SignUpServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignUpServlet</servlet-name>
+        <url-pattern>/SignUpServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SignInServlet</servlet-name>
+        <servlet-class>Authentication.SignInServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignInServlet</servlet-name>
+        <url-pattern>/SignInServlet</url-pattern>
+    </servlet-mapping>
+    <!--LoginModuleEnd-->
+    
 </web-app>

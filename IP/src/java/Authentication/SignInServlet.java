@@ -35,7 +35,7 @@ try (PrintWriter out = response.getWriter()) {
         ResultSet rs = pst.executeQuery();                        
         if(rs.next())   
         {
-           response.sendRedirect("welcomelogin.jsp");     
+           response.sendRedirect("LoginModule/welcomelogin.jsp");     
         }
         else
            out.println("Invalid login credentials");
