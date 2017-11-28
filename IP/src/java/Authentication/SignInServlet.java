@@ -22,23 +22,60 @@ response.setContentType("text/html");
 try (PrintWriter out = response.getWriter()) {
     String username = request.getParameter("username");
     String password = request.getParameter("password");
+    String level = request.getParameter("level");
     try {
         Class.forName("com.mysql.jdbc.Driver");
         Connection con;
         con = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/ip", "root", "9596");
         
-        PreparedStatement pst = con.prepareStatement("Select username,password from customer where username=? and password=?");
+        /*login for manager*/
+        if(level.equals("manager"))
+        {
+        PreparedStatement pst = con.prepareStatement("Select * from manager where username=? and password=?");
         pst.setString(1, username);
         pst.setString(2, password);
         
         ResultSet rs = pst.executeQuery();                        
         if(rs.next())   
         {
-           response.sendRedirect("LoginModule/welcomelogin.jsp");     
+           response.sendRedirect("LoginModule/manager.jsp");     
         }
         else
-           out.println("Invalid login credentials");
+           response.sendRedirect("LoginModule/welcome.jsp");
+        }
+        
+        /*login for customer*/
+        else if(level.equals("staff"))
+        {
+        PreparedStatement pst = con.prepareStatement("Select * from staff where username=? and password=?");
+        pst.setString(1, username);
+        pst.setString(2, password);
+        
+        ResultSet rs = pst.executeQuery();                        
+        if(rs.next())   
+        {
+           response.sendRedirect("LoginModule/staff.jsp");     
+        }
+        else
+           response.sendRedirect("LoginModule/welcome.jsp");
+        }
+        
+        /*login for customer*/
+        else if(level.equals("customer"))
+        {
+        PreparedStatement pst = con.prepareStatement("Select * from customer where username=? and password=?");
+        pst.setString(1, username);
+        pst.setString(2, password);
+        
+        ResultSet rs = pst.executeQuery();                        
+        if(rs.next())   
+        {
+           response.sendRedirect("LoginModule/customer.jsp");     
+        }
+        else
+           response.sendRedirect("LoginModule/welcome.jsp");
+        }
     }
     catch (ClassNotFoundException | SQLException e2) {
         System.out.println(e2);

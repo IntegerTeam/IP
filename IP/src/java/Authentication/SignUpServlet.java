@@ -29,22 +29,17 @@ try (PrintWriter out = response.getWriter()) {
         con = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/ip", "root", "9596");
         
-        PreparedStatement ps = con.prepareStatement("insert into ip.customerdetails values(?,?,?,?)");
-        PreparedStatement ps2 = con.prepareStatement("insert into ip.customer values(?,?)");
+        PreparedStatement ps = con.prepareStatement("insert into customer values(?,?,?,?)");
         
         ps.setString(1, username);
         ps.setString(2, fullname);
         ps.setString(3, email);
         ps.setString(4, password);
         
-        ps2.setString(1, username);
-        ps2.setString(2, password);
-        
         int i = ps.executeUpdate();
-        int j = ps2.executeUpdate();
         
         if (i > 0)
-            response.sendRedirect("LoginModule/welcomelogin.jsp");
+            response.sendRedirect("LoginModule/customer.jsp");
         
     }
     catch (ClassNotFoundException | SQLException e2) {

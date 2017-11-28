@@ -19,7 +19,7 @@ body, html {
 .bgimg {
     background-position: center;
     background-size: cover;
-    background-image: url("ny.jpg");
+    background-image: url("images/ny.jpg");
     min-height: 100%;
 }
 .menu {
