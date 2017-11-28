@@ -102,8 +102,6 @@ public class approveBooking extends HttpServlet {
             out.print(sBookStart +"<br>");
             out.print(sBookEnd +"<br>");            
             out.print(bookID +"<br>");
-            
-
         } catch (Exception e) {
             e.printStackTrace();
         }
