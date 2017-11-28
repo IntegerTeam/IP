@@ -52,7 +52,6 @@ public class approveBooking extends HttpServlet {
         catch(Exception e){
             out.print("Invalid booking period<br>");
         }
-        
         String custName = request.getParameter("name");
         String custEmail = request.getParameter("email");
         
