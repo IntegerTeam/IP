@@ -48,12 +48,10 @@ public class approveBooking extends HttpServlet {
             bookEnd = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("bookend"));
             sBookStart = format.format(bookStart);
             sBookEnd = format.format(bookEnd);
-            
         }
         catch(Exception e){
             out.print("Invalid booking period<br>");
         }
-        
         String custName = request.getParameter("name");
         String custEmail = request.getParameter("email");
         
