@@ -65,10 +65,8 @@ public class approveBooking extends HttpServlet {
         out.print(custEmail+"<br>");
         try {
             Connection conn = null;
-            try {
-                
-                conn = dbConnection.getConnection();
-                
+            try { 
+                conn = dbConnection.getConnection();  
             } catch (Exception e) {
                 out.println("Unable to connect to database<br>");
             }
