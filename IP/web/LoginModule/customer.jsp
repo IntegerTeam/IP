@@ -19,7 +19,7 @@ body, html {
 .bgimg {
     background-position: center;
     background-size: cover;
-    background-image: url("ny.jpg");
+    background-image: url("images/ny.jpg");
     min-height: 100%;
 }
 .menu {
@@ -32,13 +32,14 @@ body, html {
 <div class="w3-top">
   <div class="w3-row w3-padding w3-black">
     <div class="w3-col s4">
-      <a href="welcome.jsp" class="w3-button w3-block w3-black">HOME</a>
+      <a href="customer.jsp" class="w3-button w3-block w3-black">HOME</a>
     </div>
     <div class="w3-col s4">
       <a href="#about" class="w3-button w3-block w3-black">BOOKING</a>
     </div>
     <div class="w3-col s4">
       <a class="w3-button w3-block w3-black" onclick="document.getElementById('id01').style.display='block'">PROFILE</a>
+    </div>
     </div>
   </div>
 </div>
@@ -49,22 +50,9 @@ body, html {
     <header class="w3-container w3-theme-l1"> 
         <span onclick="document.getElementById('id01').style.display='none'"
         class="w3-button w3-display-topright">×</span>
-        <center><h4>HI</h4></center>
-    </header>
-        
-        <div class="w3-card-4" style="width:100%">
-    <header class="w3-container w3-light-grey">
-        <center><h3>John Doe</h3></center>
-    </header>
-    <div class="w3-container">
-      <br>
-      <img src="img.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-      <p>MACAMANAAA NAK LETAK DATA USER DARI DATABASEE NI YA AMPUNNNN</p>
-      <br><br>
+        <center><h4>WELCOME</h4></center>
+    </header>     
     </div>
-    <button class="w3-button w3-block w3-dark-grey">Edit Profile</button>
-  </div>
-</div>
 </div>
 
 <!-- Header with image -->

@@ -19,7 +19,7 @@ body, html {
 .bgimg {
     background-position: center;
     background-size: cover;
-    background-image: url("ny.jpg");
+    background-image: url("images/ny.jpg");
     min-height: 100%;
 }
 .menu {
@@ -86,7 +86,7 @@ body, html {
     </div>
 </div>
 
-<!--Modal 1--> 
+<!--Modal 2--> 
 <div id="id02" class="w3-modal">
     <div class="w3-modal-content w3-card-4 w3-animate-top">
     <header class="w3-container w3-theme-l1"> 
