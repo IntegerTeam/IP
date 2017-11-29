@@ -65,7 +65,7 @@
             <div id="intro">
                 <h1>Homestay<br />
                     Booking</h1>
-                <p>We offer you some of the best homestays nation wide here!<br>If you own a homestay, you can advertise them here!</p>
+                <p>We offer you some of the best homestays nation wide here!</p>
 
                 <ul class="actions">
                     <li><a href="#header" class="button icon solo fa-arrow-down scrolly">Continue</a></li>
@@ -104,8 +104,9 @@
                     <span class="close">&times;</span>
 
                     <div class="wrapper">                       
-                        <button id="regisButton" disabled>Registration</button>
+                    <!--    <button id="regisButton" disabled>Registration</button>
                         <button id="loginButton">Login</button>
+                    
                         <div id="register">
                             <hr>
                             <h2>Owner registration</h2>
@@ -137,15 +138,15 @@
 
                             </section>
                         </div>
-                        <div id="login" style="display:none">   
-                            <hr>
+                    -->
+                        <div id="login" >                               
                             <h2>Management Login</h2>
                             <section class="post">
                                 <form method="post" action="login" class="alt">
                                     <div class="row uniform">                                        
                                         <div class="6u 12u$(xsmall)">
-                                            <label for="email">Email</label>
-                                            <input type="text" name="email"/>
+                                            <label for="username">Username</label>
+                                            <input type="text" name="username"/>
                                         </div>
                                         <div class="6u 12u$(xsmall)">
                                             <label for="password">Password</label>
@@ -179,12 +180,12 @@
         <script>
 // Get the modal
             var modal = document.getElementById("myModal");
-            var regis = document.getElementById("register");
+       //     var regis = document.getElementById("register");
             var login = document.getElementById("login");
 // Get the button that opens the modal
             var btn = document.getElementById("myBtn");
-            var btnRegis = document.getElementById("regisButton");
-            var btnLogin = document.getElementById("loginButton");
+      //      var btnRegis = document.getElementById("regisButton");
+      //      var btnLogin = document.getElementById("loginButton");
 
 // Get the <span> element that closes the modal
             var span = document.getElementsByClassName("close")[0];
@@ -194,19 +195,19 @@
                 modal.style.display = "unset";
             }
 
-            btnRegis.onclick = function () {
-                btnRegis.disabled = true;
-                regis.style.display = "unset";
-                btnLogin.disabled = false;
-                login.style.display = "none";
-            }
+    //        btnRegis.onclick = function () {
+    //            btnRegis.disabled = true;
+    //            regis.style.display = "unset";
+    //            btnLogin.disabled = false;
+    //            login.style.display = "none";
+    //        }
 
-            btnLogin.onclick = function () {
-                btnRegis.disabled = false;
-                regis.style.display = "none";
-                btnLogin.disabled = true;
-                login.style.display = "unset";
-            }
+    //        btnLogin.onclick = function () {
+    //            btnRegis.disabled = false;
+    //            regis.style.display = "none";
+    //            btnLogin.disabled = true;
+    //            login.style.display = "unset";
+    //        }
 
 // When the user clicks on <span> (x), close the modal
             span.onclick = function () {
