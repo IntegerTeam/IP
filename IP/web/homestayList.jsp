@@ -84,72 +84,72 @@
                 out.println("Unable to connect to database.");
             }
         %>
-<div id="myModal" class="modal">
+        <div id="myModal" class="modal">
 
-                <!-- Modal content -->
-                <div class="modal-content main">
-                    <span class="close">&times;</span>
+            <!-- Modal content -->
+            <div class="modal-content main">
+                <span class="close">&times;</span>
 
-                    <div class="wrapper">                       
-                        <button id="regisButton" disabled>Registration</button>
-                        <button id="loginButton">Login</button>
-                    
-                        <div id="register">
-                            <hr>
-                            <h2>Customer registration</h2>
-                            <section class="post">
-                                <form method="post" action="register" class="alt">
-                                    <div class="row uniform">                                        
-                                        <div class="6u 12u$(xsmall)">
-                                            <label for="homestay">Name</label>
-                                            <input type="text" name="custName"/>
-                                        </div>
-                                        <div class="6u 12u$(xsmall)">
-                                            <label for="telNo">Telephone Number</label>
-                                            <input type="text" name="custTel"/>
-                                        </div>
-                                        <div class="6u 12u$(xsmall)">
-                                            <label for="email">Email</label>
-                                            <input type="text" name="custEmail"/>
-                                        </div>
-                                        <div class="6u 12u$(xsmall)">
-                                            <label for="password">Passoword</label>
-                                            <input type="text" name="custPassword"/>
-                                        </div>
-                                        <div class="12u$" >
-                                            <input type="submit" value="Register"/>
-                                        </div>
+                <div class="wrapper">                       
+                    <button id="regisButton" disabled>Registration</button>
+                    <button id="loginButton">Login</button>
+
+                    <div id="register">
+                        <hr>
+                        <h2>Customer registration</h2>
+                        <section class="post">
+                            <form method="post" action="register" class="alt">
+                                <div class="row uniform">                                        
+                                    <div class="6u 12u$(xsmall)">
+                                        <label for="homestay">Name</label>
+                                        <input type="text" name="custName"/>
                                     </div>
-                                </form>
-
-
-                            </section>
-                        </div>
-                    
-                        <div id="login" style="display:none">                               
-                            <h2>Customer Login</h2>
-                            <section class="post">
-                                <form method="post" action="login" class="alt">
-                                    <div class="row uniform">                                        
-                                        <div class="6u 12u$(xsmall)">
-                                            <label for="username">Email</label>
-                                            <input type="text" name="custEmail"/>
-                                        </div>
-                                        <div class="6u 12u$(xsmall)">
-                                            <label for="password">Password</label>
-                                            <input type="password" name="custPassword"/>
-                                        </div>
-                                        <div class="12u$" >
-                                            <input type="submit" value="Login"/>
-                                        </div>
+                                    <div class="6u 12u$(xsmall)">
+                                        <label for="telNo">Telephone Number</label>
+                                        <input type="text" name="custTel"/>
                                     </div>
-                                </form>
-                        </div>
+                                    <div class="6u 12u$(xsmall)">
+                                        <label for="email">Email</label>
+                                        <input type="text" name="custEmail"/>
+                                    </div>
+                                    <div class="6u 12u$(xsmall)">
+                                        <label for="password">Passoword</label>
+                                        <input type="text" name="custPassword"/>
+                                    </div>
+                                    <div class="12u$" >
+                                        <input type="submit" value="Register"/>
+                                    </div>
+                                </div>
+                            </form>
+
+
+                        </section>
                     </div>
 
+                    <div id="login" style="display:none">                               
+                        <h2>Customer Login</h2>
+                        <section class="post">
+                            <form method="post" action="login" class="alt">
+                                <div class="row uniform">                                        
+                                    <div class="6u 12u$(xsmall)">
+                                        <label for="username">Email</label>
+                                        <input type="text" name="custEmail"/>
+                                    </div>
+                                    <div class="6u 12u$(xsmall)">
+                                        <label for="password">Password</label>
+                                        <input type="password" name="custPassword"/>
+                                    </div>
+                                    <div class="12u$" >
+                                        <input type="submit" value="Login"/>
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
                 </div>
 
-            </div>                
+            </div>
+
+        </div>                
 
 
         <div id="wrapper">
@@ -194,19 +194,20 @@
                                 <p> <%= rset.getString("address")%> </p> 
                                 <p> <%= rset.getString("accomodation")%> </p> 
                                 <p> <%= rset.getString("rate")%> </p> 
-                                <ul class="actions">
-                                    <li><a href="#" class="button">BOOK</a></li>
-                                </ul>
-
+                                <div class="6u$ 12u$(small)">
+                                    <ul class="actions">
+                                        <% out.print("<li><a href='booking.jsp?housename="+ rset.getString("houseName")+"&rate="+rset.getString("rate")+"' class=\"button\">BOOK</a></li>"); %>
+                                    </ul>
+                                </div>
                             </div>
                             <% count++;
-                            }%>
+                                }%>
 
                         </div> 
                 </section>
 
             </div>
-            
+
             <!-- Copyright -->
             <div id="copyright">
                 <ul><li>&copy; Integer</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
@@ -214,7 +215,7 @@
 
         </div>
     </body>
-    
+
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrollex.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
@@ -223,48 +224,48 @@
     <script src="assets/js/main.js"></script>
     <script>
 // Get the modal
-            var modal = document.getElementById("myModal");
-            var regis = document.getElementById("register");
-            var login = document.getElementById("login");
+        var modal = document.getElementById("myModal");
+        var regis = document.getElementById("register");
+        var login = document.getElementById("login");
 // Get the button that opens the modal
-            var btn = document.getElementById("myBtn");
-            var btnRegis = document.getElementById("regisButton");
-            var btnLogin = document.getElementById("loginButton");
+        var btn = document.getElementById("myBtn");
+        var btnRegis = document.getElementById("regisButton");
+        var btnLogin = document.getElementById("loginButton");
 
 // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
+        var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
-            btn.onclick = function () {
-                modal.style.display = "unset";
-            }
+        btn.onclick = function () {
+            modal.style.display = "unset";
+        }
 
-            btnRegis.onclick = function () {
-                btnRegis.disabled = true;
-                regis.style.display = "unset";
-                btnLogin.disabled = false;
-                login.style.display = "none";
-           }
+        btnRegis.onclick = function () {
+            btnRegis.disabled = true;
+            regis.style.display = "unset";
+            btnLogin.disabled = false;
+            login.style.display = "none";
+        }
 
-            btnLogin.onclick = function () {
-                btnRegis.disabled = false;
-                regis.style.display = "none";
-                btnLogin.disabled = true;
-                login.style.display = "unset";
-            }
+        btnLogin.onclick = function () {
+            btnRegis.disabled = false;
+            regis.style.display = "none";
+            btnLogin.disabled = true;
+            login.style.display = "unset";
+        }
 
 // When the user clicks on <span> (x), close the modal
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
 
 // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
             }
-        </script>
+        }  
+    </script>
 </html>
 
 
