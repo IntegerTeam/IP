@@ -50,33 +50,33 @@ and open the template in the editor.
                 <section class="post">
                     <form method="post" action="approveBooking" class="alt">
                         <div class="row uniform">
-                            <div class="6u 12u$(xsmall)">
+                            <div class="6u 12u(xsmall)">
                                 <label for="choeckout">Check-in Date</label>
                                 <input type="date" name="checkin" id="start"  value=""  onmouseout="calcPay()"/>
                             </div>
-                            <div class="6u$ 12u$(xsmall)">
+                            <div class="6u 12u(xsmall)">
                                 <label for="choeckout">Check-out Date</label>
                                 <input type="date" name="checkout" id="end" value="" onmouseout="calcPay()"/>
                             </div>
-                            <div class="6u 12u$(xsmall)">
+                            <div class="6u 12u(xsmall)">
                                 <label for="homestay">Homestay</label>
                                 <input type="text" name="houseName" value="<%=housename%>" placeholder="Homestay" disabled/>
                             </div>
-                            <div class="6u$ 12u$(xsmall)">
+                            <div class="6u 12u(xsmall)">
                                 <label for="homestay">Email</label>
                                 <input type="text" name="email"  value="" placeholder="Email" />
                             </div>
 
-                            <div class="6u 12u$(xsmall)">
+                            <div class="6u 12u(xsmall)">
                                 <label for="homestay">Total Payment (RM)</label>
                                 <input type="text" name="totalPay"  id="pay" value="" placeholder="TotalPayment" disabled/>
                             </div>
-                            <div class="6u$ 12u$(xsmall)">
+                            <div class="6u 12u(xsmall)">
                                 <label for="homestay">Phone number</label>
                                 <input type="text" name="phoneNo"  value="" placeholder="Phone Number" />
                             </div>
 
-                            <div class="12u$" >
+                            <div class="12u" >
                                 <input type="submit" value="Submit Booking"/>
                             </div>
 

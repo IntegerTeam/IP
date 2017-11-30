@@ -178,23 +178,22 @@
                     <div class="row">
                         <% int count = 1;
                             while (rset.next()) {
-                                if (count % 2 != 0) {
+                               
                         %>
 
-                        <div class="6u 12u$(small)">
-                            <%
-                            } else {
-                            %>
-                            <div class="6u$ 12u$(small)">
+                        <div class="6u 12u(small)">
+                            
+                                <a class="image fit" >
                                 <%
-                                    }
+                                    
                                     out.print("<img src=\"image/" + rset.getString("houseID") + ".jpg\" alt=\"\" />");
                                 %>
+                                </a>
                                 <h3> <%= rset.getString("houseName")%> </h3>
                                 <p> <%= rset.getString("address")%> </p> 
                                 <p> <%= rset.getString("accomodation")%> </p> 
                                 <p> <%= rset.getString("rate")%> </p> 
-                                <div class="6u$ 12u$(small)">
+                                <div class="6u 12u(small)">
                                     <ul class="actions">
                                         <% out.print("<li><a href='booking.jsp?housename="+ rset.getString("houseName")+"&rate="+rset.getString("rate")+"' class=\"button\">BOOK</a></li>"); %>
                                     </ul>
