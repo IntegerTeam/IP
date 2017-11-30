@@ -71,7 +71,7 @@
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection conn = null;
-                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/integer2?useSSL=false", "root", "1234");
+                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/integer2?useSSL=false", "root", "9596");
                 //          if(!connection.isClosed())
                 //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
                 //          connection.close();
@@ -98,7 +98,7 @@
                         <hr>
                         <h2>Customer registration</h2>
                         <section class="post">
-                            <form method="post" action="register" class="alt">
+                            <form method="post" action="SignUpServlet" class="alt">
                                 <div class="row uniform">                                        
                                     <div class="6u 12u$(xsmall)">
                                         <label for="homestay">Name</label>
@@ -113,7 +113,7 @@
                                         <input type="text" name="custEmail"/>
                                     </div>
                                     <div class="6u 12u$(xsmall)">
-                                        <label for="password">Passoword</label>
+                                        <label for="password">Password</label>
                                         <input type="text" name="custPassword"/>
                                     </div>
                                     <div class="12u$" >
@@ -129,7 +129,7 @@
                     <div id="login" style="display:none">                               
                         <h2>Customer Login</h2>
                         <section class="post">
-                            <form method="post" action="login" class="alt">
+                            <form method="post" action="SignInCustomer" class="alt">
                                 <div class="row uniform">                                        
                                     <div class="6u 12u$(xsmall)">
                                         <label for="username">Email</label>

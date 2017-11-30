@@ -38,7 +38,7 @@ try (PrintWriter out = response.getWriter()) {
            response.sendRedirect("homestayList.jsp");     
         }
         else
-           response.sendRedirect("homestayList.jsp");
+           response.sendRedirect("index.html");
         }
     
     catch (ClassNotFoundException | SQLException e2) {
