@@ -19,27 +19,27 @@ throws ServletException, IOException {
  
 response.setContentType("text/html");
 try (PrintWriter out = response.getWriter()) {
-    String username = request.getParameter("username");
-    String fullname = request.getParameter("fullname");
-    String email = request.getParameter("email");
-    String password = request.getParameter("password");
+    String name = request.getParameter("custName");
+    String custTelNo = request.getParameter("custTel");
+    String custEmail = request.getParameter("custEmail");
+    String password = request.getParameter("custPassword");
     try {
         Class.forName("com.mysql.jdbc.Driver");
         Connection con;
         con = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/ip", "root", "9596");
+                "jdbc:mysql://localhost:3306/integer2", "root", "9596");
         
         PreparedStatement ps = con.prepareStatement("insert into customer values(?,?,?,?)");
         
-        ps.setString(1, username);
-        ps.setString(2, fullname);
-        ps.setString(3, email);
+        ps.setString(1, custEmail);
+        ps.setString(2, name);
+        ps.setString(3, custTelNo);
         ps.setString(4, password);
         
         int i = ps.executeUpdate();
         
         if (i > 0)
-            response.sendRedirect("LoginModule/customer.jsp");
+            response.sendRedirect("homestayList.jsp");
         
     }
     catch (ClassNotFoundException | SQLException e2) {

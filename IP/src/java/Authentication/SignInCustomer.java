@@ -13,23 +13,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class SignInServlet extends HttpServlet {
+public class SignInCustomer extends HttpServlet {
 @Override
 public void doPost(HttpServletRequest request, HttpServletResponse response)
 throws ServletException, IOException {
  
 response.setContentType("text/html");
 try (PrintWriter out = response.getWriter()) {
-    String username = request.getParameter("username");
-    String password = request.getParameter("password");
+    String custEmail = request.getParameter("custEmail");
+    String password = request.getParameter("custPassword");
     try {
         Class.forName("com.mysql.jdbc.Driver");
         Connection con;
         con = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/integer2", "root", "9596");
         
-        PreparedStatement pst = con.prepareStatement("Select * from staff where username=? and password=?");
-        pst.setString(1, username);
+        PreparedStatement pst = con.prepareStatement("Select * from customer where custEmail=? and password=?");
+        pst.setString(1, custEmail);
         pst.setString(2, password);
         
         ResultSet rs = pst.executeQuery();                        
@@ -38,13 +38,11 @@ try (PrintWriter out = response.getWriter()) {
            response.sendRedirect("homestayList.jsp");     
         }
         else
-           response.sendRedirect("index.html");
-        
-    }
+           response.sendRedirect("homestayList.jsp");
+        }
+    
     catch (ClassNotFoundException | SQLException e2) {
         System.out.println(e2);
     }
-
-} 
-
-}}
+}
+} }
