@@ -100,23 +100,23 @@
                         <section class="post">
                             <form method="post" action="SignUpServlet" class="alt">
                                 <div class="row uniform">                                        
-                                    <div class="6u 12u$(xsmall)">
+                                    <div class="6u 12u(xsmall)">
                                         <label for="homestay">Name</label>
                                         <input type="text" name="custName"/>
                                     </div>
-                                    <div class="6u 12u$(xsmall)">
+                                    <div class="6u 12u(xsmall)">
                                         <label for="telNo">Telephone Number</label>
                                         <input type="text" name="custTel"/>
                                     </div>
-                                    <div class="6u 12u$(xsmall)">
+                                    <div class="6u 12u(xsmall)">
                                         <label for="email">Email</label>
                                         <input type="text" name="custEmail"/>
                                     </div>
-                                    <div class="6u 12u$(xsmall)">
+                                    <div class="6u 12u(xsmall)">
                                         <label for="password">Password</label>
                                         <input type="text" name="custPassword"/>
                                     </div>
-                                    <div class="12u$" >
+                                    <div class="12u" >
                                         <input type="submit" value="Register"/>
                                     </div>
                                 </div>
@@ -131,15 +131,15 @@
                         <section class="post">
                             <form method="post" action="SignInCustomer" class="alt">
                                 <div class="row uniform">                                        
-                                    <div class="6u 12u$(xsmall)">
+                                    <div class="6u 12u(xsmall)">
                                         <label for="username">Email</label>
                                         <input type="text" name="custEmail"/>
                                     </div>
-                                    <div class="6u 12u$(xsmall)">
+                                    <div class="6u 12u(xsmall)">
                                         <label for="password">Password</label>
                                         <input type="password" name="custPassword"/>
                                     </div>
-                                    <div class="12u$" >
+                                    <div class="12u" >
                                         <input type="submit" value="Login"/>
                                     </div>
                                 </div>
