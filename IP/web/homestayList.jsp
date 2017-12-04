@@ -3,6 +3,7 @@
     Created on : Nov 23, 2017, 11:23:10 AM
     Author     : User
 --%>
+<%@page import="conn.MySQL"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.ResultSet"%>
@@ -71,7 +72,7 @@
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection conn = null;
-                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/integer2?useSSL=false", "root", "9596");
+                conn = MySQL.getMySQLConnection();
                 //          if(!connection.isClosed())
                 //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
                 //          connection.close();
@@ -185,8 +186,8 @@
                             
                                 <a class="image fit" >
                                 <%
-                                    
-                                    out.print("<img src=\"image/" + rset.getString("houseID") + ".jpg\" alt=\"\" />");
+                                    //out.print("<img src=\"image/" + rset.getString("houseID") + ".jpg\" alt=\"\" />");
+                                    out.print("<img src=\"image/" + rset.getString("houseID") + ".jpg\" alt=\"\" style=\"max-width:100%;max-height:230px;\" />");
                                 %>
                                 </a>
                                 <h3> <%= rset.getString("houseName")%> </h3>

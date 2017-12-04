@@ -1,5 +1,6 @@
 package Authentication;
 
+import conn.MySQL;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -25,8 +26,7 @@ try (PrintWriter out = response.getWriter()) {
     try {
         Class.forName("com.mysql.jdbc.Driver");
         Connection con;
-        con = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/integer2", "root", "9596");
+        con = MySQL.getMySQLConnection();
         
         PreparedStatement pst = con.prepareStatement("Select * from customer where custEmail=? and password=?");
         pst.setString(1, custEmail);
