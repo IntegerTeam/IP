@@ -35,71 +35,87 @@ public class approveBooking extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter(); 
-        String homestay = request.getParameter("homestay");
-        Date bookStart = null;
-        Date bookEnd = null;
-        SimpleDateFormat format = new SimpleDateFormat();
+        PrintWriter out = response.getWriter();
+
+        SimpleDateFormat datetimeFormatter1 = new SimpleDateFormat("yyyy-MM-dd");
         String sBookStart = "";
         String sBookEnd = "";
-        try{
-            bookStart = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("bookstart"));
-            bookEnd = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("bookend"));
-            sBookStart = format.format(bookStart);
-            sBookEnd = format.format(bookEnd);
-        }
-        catch(Exception e){
+
+        //      out.println(request.getParameter("checkin") + " " + request.getParameter("checkout"));
+        java.sql.Date sqlStartDate = null;
+        java.sql.Date sqlEndDate = null;
+        Date date;
+        try {
+            date = datetimeFormatter1.parse(request.getParameter("checkin"));
+            sqlStartDate = new java.sql.Date(date.getTime());
+            date = datetimeFormatter1.parse(request.getParameter("checkout"));
+            sqlEndDate = new java.sql.Date(date.getTime());
+
+        } catch (Exception e) {
             out.print("Invalid booking period<br>");
         }
-        String custName = request.getParameter("name");
+        String homestay = null;
+        homestay = request.getParameter("houseName");
         String custEmail = request.getParameter("email");
-        
+        float totalPay = Float.valueOf(request.getParameter("totalPay"));
+
         //debugg
-        out.print(homestay+"<br>");
-        out.print(sBookStart+"<br>");
-        out.print(sBookEnd+"<br>");
-        out.print(custName+"<br>");
-        out.print(custEmail+"<br>");
+        out.print(homestay + "<br>");
+        out.print(sqlStartDate + "<br>");
+        out.print(sqlEndDate + "<br>");
+        out.print(custEmail + "<br>");
         try {
             Connection conn = null;
-            try { 
-                conn = dbConnection.getConnection();  
+            try {
+                conn = dbConnection.getConnection();
             } catch (Exception e) {
                 out.println("Unable to connect to database<br>");
             }
             String sql1 = "Select * from booking";
             Statement stmt = conn.createStatement();
             ResultSet rset = stmt.executeQuery(sql1);
-            
+
             int count = 1;
-            while(rset.next()){
+            while (rset.next()) {
                 count++;
             }
             String bookID = "";
-            if(count<10)
+            if (count < 10) {
                 bookID = "BK0000" + String.valueOf(count);
-            else if(count<100)
+            } else if (count < 100) {
                 bookID = "BK000" + String.valueOf(count);
-            else if(count<1000)
+            } else if (count < 1000) {
                 bookID = "BK00" + String.valueOf(count);
-            else if(count<10000)
+            } else if (count < 10000) {
                 bookID = "BK0" + String.valueOf(count);
-            else if(count<100000)
+            } else if (count < 100000) {
                 bookID = "BK" + String.valueOf(count);
-            
+            }
+
             String sql2 = "insert into booking values(?,?,?,?,?,?)";
             PreparedStatement stmt2 = conn.prepareStatement(sql2);
             
+            stmt2.setString(1, bookID);
+            stmt2.setString(2, homestay);
+            stmt2.setString(3, custEmail);
+            stmt2.setDate(4, sqlStartDate);
+            stmt2.setDate(5, sqlEndDate);
+            stmt2.setFloat(6, totalPay);
+            
             //into database debugg
-            out.print(bookID +"<br>");
-            out.print(homestay +"<br>");
-            out.print(custEmail +"<br>");
-            out.print(sBookStart +"<br>");
-            out.print(sBookEnd +"<br>");            
-            out.print(bookID +"<br>");
+            //    out.print(bookID +"<br>");
+            //    out.print(homestay +"<br>");
+            //    out.print(custEmail +"<br>");
+            //    out.print(sqlStartDate +"<br>");
+            //    out.print(sqlEndDate +"<br>");            
+            //    out.print(totalPay +"<br>");
+            
+            stmt2.executeUpdate();
+            
+            response.sendRedirect("BookingModule/Payment/paymentPage.jsp");
         } catch (Exception e) {
             e.printStackTrace();
-            
+
         }
     }
 

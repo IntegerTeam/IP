@@ -60,16 +60,16 @@ and open the template in the editor.
                             </div>
                             <div class="6u 12u(xsmall)">
                                 <label for="homestay">Homestay</label>
-                                <input type="text" name="houseName" value="<%=housename%>" placeholder="Homestay" disabled/>
+                                <input type="text" name="houseName" value="<%=housename%>" placeholder="Homestay" readonly/>
                             </div>
                             <div class="6u 12u(xsmall)">
                                 <label for="homestay">Email</label>
-                                <input type="text" name="email"  value="" placeholder="Email" />
+                                <input type="text" name="email" placeholder="Email" />
                             </div>
 
                             <div class="6u 12u(xsmall)">
                                 <label for="homestay">Total Payment (RM)</label>
-                                <input type="text" name="totalPay"  id="pay" value="" placeholder="TotalPayment" disabled/>
+                                <input type="text" name="totalPay"  id="pay" value="" placeholder="TotalPayment" readonly/>
                             </div>
                             <div class="6u 12u(xsmall)">
                                 <label for="homestay">Phone number</label>

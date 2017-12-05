@@ -71,7 +71,7 @@
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection conn = null;
-                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/integer2?useSSL=false", "root", "9596");
+                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/integer2?useSSL=false", "root", "1234");
                 //          if(!connection.isClosed())
                 //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
                 //          connection.close();
@@ -101,7 +101,7 @@
                             <form method="post" action="SignUpServlet" class="alt">
                                 <div class="row uniform">                                        
                                     <div class="6u 12u(xsmall)">
-                                        <label for="homestay">Name</label>
+                                        <label for="name">Name</label>
                                         <input type="text" name="custName"/>
                                     </div>
                                     <div class="6u 12u(xsmall)">
