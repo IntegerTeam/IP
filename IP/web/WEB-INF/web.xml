@@ -4,16 +4,23 @@
         <servlet-name>approveBooking</servlet-name>
         <servlet-class>servlet.approveBooking</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>createHomestay</servlet-name>
+        <servlet-class>servlet.createHomestay</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>approveBooking</servlet-name>
         <url-pattern>/approveBooking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>createHomestay</servlet-name>
+        <url-pattern>/createHomestay</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
     <!--LoginModuleStart-->
     <servlet>
         <servlet-name>SignUpServlet</servlet-name>

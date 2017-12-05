@@ -27,7 +27,7 @@ try (PrintWriter out = response.getWriter()) {
         Class.forName("com.mysql.jdbc.Driver");
         Connection con;
         con = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/integer2", "root", "9596");
+                "jdbc:mysql://localhost:3306/integer2", "root", "1234");
         
         PreparedStatement ps = con.prepareStatement("insert into customer values(?,?,?,?)");
         
