@@ -127,7 +127,8 @@
                         </section>
                     </div>
 
-                    <div id="login" style="display:none">                               
+                    <div id="login" style="display:none">
+                        <hr>
                         <h2>Customer Login</h2>
                         <section class="post">
                             <form method="post" action="SignInCustomer" class="alt">
@@ -237,33 +238,33 @@
 // When the user clicks the button, open the modal 
         btn.onclick = function () {
             modal.style.display = "unset";
-        }
+        };
 
         btnRegis.onclick = function () {
             btnRegis.disabled = true;
             regis.style.display = "unset";
             btnLogin.disabled = false;
             login.style.display = "none";
-        }
+        };
 
         btnLogin.onclick = function () {
             btnRegis.disabled = false;
             regis.style.display = "none";
             btnLogin.disabled = true;
             login.style.display = "unset";
-        }
+        };
 
 // When the user clicks on <span> (x), close the modal
         span.onclick = function () {
             modal.style.display = "none";
-        }
+        };
 
 // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
-        }  
+        };  
     </script>
 </html>
 

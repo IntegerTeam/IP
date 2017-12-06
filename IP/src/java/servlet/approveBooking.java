@@ -91,6 +91,7 @@ public class approveBooking extends HttpServlet {
             } else if (count < 100000) {
                 bookID = "BK" + String.valueOf(count);
             }
+            System.out.println("Youhave been hacked");
 
             String sql2 = "insert into booking values(?,?,?,?,?,?)";
             PreparedStatement stmt2 = conn.prepareStatement(sql2);
