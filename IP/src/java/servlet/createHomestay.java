@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import beans.Homestay;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,7 +41,7 @@ public class createHomestay extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         PrintWriter out = response.getWriter();
-        String houseid = request.getParameter("houseid");
+        //String houseid = request.getParameter("houseid");
         String housename = request.getParameter("housename");
         String address = request.getParameter("address");
         String accomodation = request.getParameter("accomodation");
@@ -54,18 +56,37 @@ public class createHomestay extends HttpServlet {
             } catch (Exception e) {
                 out.println("Unable to connect to database<br>");
             }
+            
+            String sql1 = "Select * from homestay";
+            Statement stmt = conn.createStatement();
+            ResultSet rset = stmt.executeQuery(sql1);
+            int count = 1;
+            while (rset.next()) {
+            count++;
+            }
+            String houseid = "";
+             if (count < 10) {
+                houseid = "H000" + String.valueOf(count);
+             } else if (count < 100) {
+                houseid = "H00" + String.valueOf(count);
+             } else if (count < 1000) {
+                 houseid = "H0" + String.valueOf(count);
+             } else if (count < 10000) {
+                houseid = "H" + String.valueOf(count);
+             }
+           
+        PreparedStatement stmt2 = null;
+        String sql2 = "INSERT into homestay values (?,?,?,?,?)";
+        stmt2 = conn.prepareStatement(sql2);
         
-        PreparedStatement stmt = null;
-        String sql = "INSERT into homestay values (?,?,?,?,?)";
-        stmt = conn.prepareStatement(sql);
         
-        stmt.setString(1, houseid);
-        stmt.setString(2, housename);
-        stmt.setString(3, address);
-        stmt.setString(4, accomodation);
-        stmt.setInt(5, rate);
+        stmt2.setString(1, houseid);
+        stmt2.setString(2, housename);
+        stmt2.setString(3, address);
+        stmt2.setString(4, accomodation);
+        stmt2.setInt(5, rate);
         
-        stmt.executeUpdate();
+        stmt2.executeUpdate();
         out.print("test");
         Boolean stat = true;
         if (stat == true)
@@ -75,52 +96,5 @@ public class createHomestay extends HttpServlet {
         
         
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(createHomestay.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(createHomestay.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
+

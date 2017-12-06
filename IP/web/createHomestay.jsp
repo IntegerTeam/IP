@@ -41,16 +41,15 @@ and open the template in the editor.
             <div id="main">
 
                 <!-- Post -->
-
+                
+                
+                
                 <section class="post">
                     <form method="post" action="createHomestay" class="alt">
                         <div class="row uniform">
                           
                             
-                            <div class="6u 12u(xsmall)">
-                                <label for="homestay">House ID</label>
-                                <input type="text" name="houseid"  id="houseid" value="" placeholder="House ID">
-                            </div>
+                            
                             <div class="6u 12u(xsmall)">
                                 <label for="homestay">House Name</label>
                                 <input type="text" name="housename"  value="" placeholder="House Name">
@@ -63,7 +62,7 @@ and open the template in the editor.
                                 <label for="homestay">Accomodation</label>
                                 <input type="text" name="accomodation"  value="" placeholder="Accomodation">
                             </div>
-                            <div class="12u(xsmall)">
+                            <div class="6u 12u(xsmall)">
                                 <label for="homestay">Rate</label>
                                 <input type="text" name="rate" value="" placeholder="Rate">
                             </div>
