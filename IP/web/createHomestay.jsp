@@ -43,7 +43,7 @@ and open the template in the editor.
                 <!-- Post -->
 
                 <section class="post">
-                    <form method="post" action="" class="alt">
+                    <form method="post" action="createHomestay" class="alt">
                         <div class="row uniform">
                           
                             

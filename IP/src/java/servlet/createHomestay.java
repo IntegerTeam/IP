@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import beans.Homestay;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -43,7 +45,7 @@ public class createHomestay extends HttpServlet {
         String accomodation = request.getParameter("accomodation");
         int rate = Integer.valueOf(request.getParameter("rate"));
         
-        Homestay homestay = new Homestay();
+      //  Homestay homestay = new Homestay(houseid, housename, address, accomodation, rate);
         
         
         Connection conn = null;
@@ -52,8 +54,9 @@ public class createHomestay extends HttpServlet {
             } catch (Exception e) {
                 out.println("Unable to connect to database<br>");
             }
+        
         PreparedStatement stmt = null;
-        String sql = "INSERT into homestay (?,?,?,?,?)";
+        String sql = "INSERT into homestay values (?,?,?,?,?)";
         stmt = conn.prepareStatement(sql);
         
         stmt.setString(1, houseid);
@@ -63,7 +66,12 @@ public class createHomestay extends HttpServlet {
         stmt.setInt(5, rate);
         
         stmt.executeUpdate();
-        
+        out.print("test");
+        Boolean stat = true;
+        if (stat == true)
+        {
+            response.sendRedirect("homestayList.jsp");
+        }
         
         
     }
@@ -80,7 +88,11 @@ public class createHomestay extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(createHomestay.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -94,7 +106,11 @@ public class createHomestay extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(createHomestay.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

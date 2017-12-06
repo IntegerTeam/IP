@@ -1,5 +1,6 @@
 package Authentication;
 
+import conn.MySQL;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -26,8 +27,7 @@ try (PrintWriter out = response.getWriter()) {
     try {
         Class.forName("com.mysql.jdbc.Driver");
         Connection con;
-        con = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/integer2", "root", "1234");
+        con = MySQL.getMySQLConnection();
         
         PreparedStatement ps = con.prepareStatement("insert into customer values(?,?,?,?)");
         
