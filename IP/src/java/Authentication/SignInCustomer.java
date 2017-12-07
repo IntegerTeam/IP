@@ -10,9 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
+
+import beans.Customer;
 
 public class SignInCustomer extends HttpServlet {
 @Override
@@ -32,9 +32,17 @@ try (PrintWriter out = response.getWriter()) {
         pst.setString(1, custEmail);
         pst.setString(2, password);
         
+        Customer customer = new Customer();
+        
         ResultSet rs = pst.executeQuery();                        
         if(rs.next())   
         {
+           
+           customer.setEmail(rs.getString("custEmail"));
+           customer.setName(rs.getString("name"));
+           customer.setTelNo(rs.getString("custTelNo"));
+           HttpSession session = request.getSession();
+           session.setAttribute("customer", customer);
            response.sendRedirect("homestayList.jsp");     
         }
         else

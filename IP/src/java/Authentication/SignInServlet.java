@@ -10,9 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
+
+import beans.Staff;
 
 public class SignInServlet extends HttpServlet {
 @Override
@@ -26,15 +26,27 @@ try (PrintWriter out = response.getWriter()) {
     try {
         Class.forName("com.mysql.jdbc.Driver");
         Connection con;
-        con = MySQL.getMySQLConnection();
+        con = MySQL.getMySQLConnection();     
         
         PreparedStatement pst = con.prepareStatement("Select * from staff where username=? and password=?");
         pst.setString(1, username);
         pst.setString(2, password);
         
-        ResultSet rs = pst.executeQuery();                        
+        ResultSet rs = pst.executeQuery();  
+        
+        Staff staff = new Staff();
+        
         if(rs.next())   
         {
+           HttpSession session = request.getSession();
+           staff.setUsername(rs.getString("username"));
+           staff.setName(rs.getString("name"));
+           staff.setIcNo(rs.getString("icNo"));
+           staff.setAddress(rs.getString("address"));
+           staff.setTelNo(rs.getString("telNo"));
+           staff.setEmail(rs.getString("email"));
+           staff.setLevel(rs.getString("level"));
+           session.setAttribute("staff",staff);
            response.sendRedirect("homestayList.jsp");     
         }
         else
