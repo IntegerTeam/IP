@@ -9,7 +9,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Statement"%>
-
+<%@page import="beans.*"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -66,25 +66,6 @@
         </style>
     </head>
     <body>
-        <%
-            ResultSet rset = null;
-
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection conn = null;
-                conn = MySQL.getMySQLConnection();
-                //          if(!connection.isClosed())
-                //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
-                //          connection.close();
-                String sql = "Select * from staff";
-                Statement stmnt = null;
-                stmnt = conn.createStatement();
-                rset = stmnt.executeQuery(sql);
-
-            } catch (Exception ex) {
-                out.println("Unable to connect to database.");
-            }
-        %>
         <div id="myModal" class="modal">
 
             <!-- Modal content -->
@@ -98,32 +79,26 @@
                     <div id="register">
                         <hr>
                         <h2>Profile</h2>
-                        <section class="post">
-                            <form method="post" action="SignUpServlet" class="alt">
-                                <div class="row uniform">                                        
-                                    <div class="6u 12u(xsmall)">
-                                        <label for="name">Name</label>
-                                        <input type="text" name="custName"/>
-                                    </div>
-                                    <div class="6u 12u(xsmall)">
-                                        <label for="telNo">Telephone Number</label>
-                                        <input type="text" name="custTel"/>
-                                    </div>
-                                    <div class="6u 12u(xsmall)">
-                                        <label for="email">Email</label>
-                                        <input type="text" name="custEmail"/>
-                                    </div>
-                                    <div class="6u 12u(xsmall)">
-                                        <label for="password">Password</label>
-                                        <input type="text" name="custPassword"/>
-                                    </div>
-                                    <div class="12u" >
-                                        <input type="submit" value="Register"/>
-                                    </div>
-                                </div>
-                            </form>
-
-
+                        <% Staff staff = (Staff) session.getAttribute("staff"); %>
+                        <section class="alt">
+                            <h3>Name</h3>
+                            <input type="text" name="name" value="<%= staff.getName() %>" readonly/><br>
+			</section>
+			<section class="alt">
+                            <h3>IC No</h3>
+                            <input type="text" name="icNo" value="<%= staff.getIcNo() %>" readonly/><br>
+			</section>
+                        <section class="alt">
+                            <h3>Address</h3>
+                            <input type="text" name="address" value="<%= staff.getAddress() %>" readonly/><br>
+			</section>
+                        <section class="alt">
+                            <h3>Telephone Number</h3>
+                            <input type="text" name="telNo" value="<%= staff.getTelNo() %>" readonly/><br>
+                        </section>
+                        <section class="alt">
+                            <h3>Email</h3>
+                            <input type="text" name="email" value="<%= staff.getEmail() %>" readonly/><br>
                         </section>
                     </div>
 
