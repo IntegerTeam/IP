@@ -164,7 +164,7 @@
             <!-- Nav -->
             <nav id="nav">
                 <ul class="links">							
-                    <li class="active"><a href="#">House List</a></li>
+                    <li class="active"><a href="#">Homestay List</a></li>
                     <li><a href="#">Booking Log</a></li>
                 </ul>
                 <ul class="icons">							
