@@ -9,6 +9,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Statement"%>
+<%@page import="beans.Customer"%>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -167,8 +168,17 @@
                     <li class="active"><a href="houseList.html">Homestay</a></li>	
                 </ul>
                 <ul class="icons">							
-                    <li>Currently booking as: </li>
-                    <li><a id="myBtn" >Guest</a></li>
+                    <div>
+                        <li>Currently booking as:
+                            <%  Customer customer = (Customer) session.getAttribute("customer");
+                                if (customer == null) {
+                                    out.print("<li><a id=\"myBtn\" >Guest</a></li>");
+                                } else {
+                                    out.print("<li><a >" + customer.getName() + "</a></li>");
+                                }
+                            %>
+                        </li>                        
+                    </div>
                 </ul>
             </nav>
 
@@ -180,30 +190,29 @@
                     <div class="row">
                         <% int count = 1;
                             while (rset.next()) {
-                               
+
                         %>
 
                         <div class="6u 12u(small)">
-                            
-                                <a class="image fit" >
-                                <%
-                                    //out.print("<img src=\"image/" + rset.getString("houseID") + ".jpg\" alt=\"\" />");
+
+                            <a class="image fit" >
+                                <%                                    //out.print("<img src=\"image/" + rset.getString("houseID") + ".jpg\" alt=\"\" />");
                                     out.print("<img src=\"image/" + rset.getString("houseID") + ".jpg\" alt=\"\" style=\"max-width:100%;max-height:230px;\" />");
                                 %>
-                                </a>
-                                <h3> <%= rset.getString("houseName")%> </h3>
-                                <p> <%= rset.getString("address")%> </p> 
-                                <p> <%= rset.getString("accomodation")%> </p> 
-                                <p> <%= rset.getString("rate")%> </p> 
-                                <div class="6u 12u(small)">
-                                    <ul class="actions">
-                                        <% out.print("<li><a href='booking.jsp?housename="+ rset.getString("houseName")+"&rate="+rset.getString("rate")+"' class=\"button\">BOOK</a></li>"); %>
-                                    </ul>
-                                </div>
+                            </a>
+                            <h3> <%= rset.getString("houseName")%> </h3>
+                            <p> <%= rset.getString("address")%> </p> 
+                            <p> <%= rset.getString("accomodation")%> </p> 
+                            <p> <%= rset.getString("rate")%> </p> 
+                            <div class="6u 12u(small)">
+                                <ul class="actions">
+                                    <% out.print("<li><a href='booking.jsp?housename=" + rset.getString("houseName") + "&rate=" + rset.getString("rate") + "' class=\"button\">BOOK</a></li>"); %>
+                                </ul>
                             </div>
-                            <% count++;
+                        </div>
+                        <% count++;
                                 }%>
-                        </div> 
+                    </div> 
                 </section>
 
             </div>
@@ -264,7 +273,7 @@
             if (event.target == modal) {
                 modal.style.display = "none";
             }
-        };  
+        };
     </script>
 </html>
 
