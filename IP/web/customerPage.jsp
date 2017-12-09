@@ -9,7 +9,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Statement"%>
-<%@page import="beans.*"%>
+<%@page import="beans.Customer"%>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -159,28 +159,24 @@
 
             <!-- Header -->
             <header id="header">
-                <a href="index.html" class="logo">Homestay</a>
+                <a href="customerPage.html" class="logo">Homestay</a>
             </header>
 
             <!-- Nav -->
             <nav id="nav">
                 <ul class="links">							
-                    <li class="active"><a href="houseList.html">Homestay</a></li>	
+                    <li class="active"><a href="houseList.html">Homestay</a></li>
                 </ul>
                 <ul class="icons">							
                     <div>
-                        <li>
+                        <li>Currently booking as:<a id="myBtn">
                             <%  Customer customer = (Customer) session.getAttribute("customer");
-                                Staff staff = (Staff) session.getAttribute("staff");
-                                if (customer != null) {
-                                    out.print("Currently booking as:<li><a >" + customer.getName() + "</a></li>");
-
-                                } else if (staff != null) {
-                                    out.print("Currently logged in as:<li><a >" + staff.getName() + "</a></li>");
+                                if (customer == null) {
+                                    out.print("<li><a id=\"myBtn\" >Guest</a></li>");
                                 } else {
-                                    out.print("Currently booking as:<li><a id=\"myBtn\" >Guest</a></li>");
+                                    out.print("<li><a >" + customer.getName() + "</a></li>");
                                 }
-                            %>
+                                %></a>
                         </li>                        
                     </div>
                 </ul>
@@ -215,7 +211,7 @@
                             </div>
                         </div>
                         <% count++;
-                            }%>
+                                }%>
                     </div> 
                 </section>
 

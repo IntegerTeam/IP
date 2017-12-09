@@ -9,7 +9,6 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Statement"%>
-<%@page import="beans.*"%>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -77,7 +76,7 @@
                 //          if(!connection.isClosed())
                 //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
                 //          connection.close();
-                String sql = "Select houseID, houseName, address, accomodation, rate from homestay";
+                String sql = "Select * from staff";
                 Statement stmnt = null;
                 stmnt = conn.createStatement();
                 rset = stmnt.executeQuery(sql);
@@ -93,12 +92,12 @@
                 <span class="close">&times;</span>
 
                 <div class="wrapper">                       
-                    <button id="regisButton" disabled>Registration</button>
-                    <button id="loginButton">Login</button>
+                    <button id="regisButton" disabled>Profile</button>
+                    <button id="loginButton">Edit Profile</button>
 
                     <div id="register">
                         <hr>
-                        <h2>Customer registration</h2>
+                        <h2>Profile</h2>
                         <section class="post">
                             <form method="post" action="SignUpServlet" class="alt">
                                 <div class="row uniform">                                        
@@ -128,9 +127,9 @@
                         </section>
                     </div>
 
-                    <div id="login" style="display:none">
+                    <div id="login" style="display:none">  
                         <hr>
-                        <h2>Customer Login</h2>
+                        <h2>Edit Profile</h2>
                         <section class="post">
                             <form method="post" action="SignInCustomer" class="alt">
                                 <div class="row uniform">                                        
@@ -148,8 +147,8 @@
                                 </div>
                             </form>
                     </div>
+                    
                 </div>
-
             </div>
 
         </div>                
@@ -159,30 +158,18 @@
 
             <!-- Header -->
             <header id="header">
-                <a href="index.html" class="logo">Homestay</a>
+                <a href="managerPage.jsp" class="logo">Homestay</a>
             </header>
 
             <!-- Nav -->
             <nav id="nav">
                 <ul class="links">							
-                    <li class="active"><a href="houseList.html">Homestay</a></li>	
+                    <li class="active"><a href="#">Schedule</a></li>
+                    <li><a href="#">Booking Log</a></li>	
                 </ul>
                 <ul class="icons">							
-                    <div>
-                        <li>
-                            <%  Customer customer = (Customer) session.getAttribute("customer");
-                                Staff staff = (Staff) session.getAttribute("staff");
-                                if (customer != null) {
-                                    out.print("Currently booking as:<li><a >" + customer.getName() + "</a></li>");
-
-                                } else if (staff != null) {
-                                    out.print("Currently logged in as:<li><a >" + staff.getName() + "</a></li>");
-                                } else {
-                                    out.print("Currently booking as:<li><a id=\"myBtn\" >Guest</a></li>");
-                                }
-                            %>
-                        </li>                        
-                    </div>
+                    <li>Currently log-in as: </li>
+                    <li><a id="myBtn" >Manager</a></li>
                 </ul>
             </nav>
 
@@ -191,32 +178,7 @@
 
                 <!-- Post -->
                 <section class="post">
-                    <div class="row">
-                        <% int count = 1;
-                            while (rset.next()) {
-
-                        %>
-
-                        <div class="6u 12u(small)">
-
-                            <a class="image fit" >
-                                <%                                    //out.print("<img src=\"image/" + rset.getString("houseID") + ".jpg\" alt=\"\" />");
-                                    out.print("<img src=\"image/" + rset.getString("houseID") + ".jpg\" alt=\"\" style=\"max-width:100%;max-height:230px;\" />");
-                                %>
-                            </a>
-                            <h3> <%= rset.getString("houseName")%> </h3>
-                            <p> <%= rset.getString("address")%> </p> 
-                            <p> <%= rset.getString("accomodation")%> </p> 
-                            <p> <%= rset.getString("rate")%> </p> 
-                            <div class="6u 12u(small)">
-                                <ul class="actions">
-                                    <% out.print("<li><a href='booking.jsp?housename=" + rset.getString("houseName") + "&rate=" + rset.getString("rate") + "' class=\"button\">BOOK</a></li>"); %>
-                                </ul>
-                            </div>
-                        </div>
-                        <% count++;
-                            }%>
-                    </div> 
+                     
                 </section>
 
             </div>
@@ -251,33 +213,33 @@
 // When the user clicks the button, open the modal 
         btn.onclick = function () {
             modal.style.display = "unset";
-        };
+        }
 
         btnRegis.onclick = function () {
             btnRegis.disabled = true;
             regis.style.display = "unset";
             btnLogin.disabled = false;
             login.style.display = "none";
-        };
+        }
 
         btnLogin.onclick = function () {
             btnRegis.disabled = false;
             regis.style.display = "none";
             btnLogin.disabled = true;
             login.style.display = "unset";
-        };
+        }
 
 // When the user clicks on <span> (x), close the modal
         span.onclick = function () {
             modal.style.display = "none";
-        };
+        }
 
 // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
-        };
+        }  
     </script>
 </html>
 
