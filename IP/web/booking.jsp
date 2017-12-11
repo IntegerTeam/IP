@@ -15,6 +15,89 @@ and open the template in the editor.
             String housename = request.getParameter("housename");
             int rate = Integer.valueOf(request.getParameter("rate"));
         %>
+        
+        <style>
+            /* The Modal (background) */
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 2; /* Sit on top */
+                padding-top: 100px; /* Location of the box */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+            }
+
+            /* Modal Content */
+            .modal-content {
+                background-color: #fefefe;
+                margin: auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%;
+            }
+
+            /* The Close Button */
+            .close {
+                color: #aaaaaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            
+            /* CSS for Credit Card Payment form */
+            .credit-card-box .panel-title {
+                display: inline;
+                font-weight: bold;
+            }
+            .credit-card-box .form-control.error {
+                border-color: red;
+                outline: 0;
+                box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(255,0,0,0.6);
+            }
+            .credit-card-box label.error {
+                font-weight: bold;
+                color: red;
+                padding: 2px 8px;
+                margin-top: 2px;
+            }
+            .credit-card-box .payment-errors {
+                font-weight: bold;
+                color: red;
+                padding: 2px 8px;
+                margin-top: 2px;
+            }
+            .credit-card-box label {
+                display: block;
+            }
+            /* The old "center div vertically" hack */
+            .credit-card-box .display-table {
+                display: table;
+            }
+            .credit-card-box .display-tr {
+                display: table-row;
+            }
+            .credit-card-box .display-td {
+                display: table-cell;
+                vertical-align: middle;
+                width: 50%;
+            }
+            /* Just looks nicer */
+            .credit-card-box .panel-heading img {
+                min-width: 180px;
+            }
+        </style>
 
 
     </head>
@@ -77,7 +160,7 @@ and open the template in the editor.
                             </div>
 
                             <div class="12u" >
-                                <input type="submit" value="Submit Booking"/>
+                                <input id="myBtn" class="logo" type="button" value="Submit Booking"/>
                             </div>
 
 
@@ -97,6 +180,59 @@ and open the template in the editor.
             </div>
 
         </div>
+                            
+        <!-- Payment -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content main">
+                <span class="close">&times;</span>
+                <div class="wrapper">
+                   <div class="modal-body">
+                       <div class="popup">
+                    <iframe src="BookingModule/Payment/paymentPage.jsp" name="targetframe" allowTransparency="true" scrolling="yes" frameborder="0" width="100%" style="height:50em">
+                    </iframe>  
+                           </div>
+                    </div>
+<!--                    <form method="post" action="paymentServlet" class="alt">
+                        <div class="row uniform">
+                            <div class="12u" style="text-align: center">
+                                <label for="username">Payment Detail</label>
+                            </div>
+                            <div class="12u">
+                                <label for="email">Email</label>
+                                <input type="text" name="email"/>
+                            </div>
+                            <div class="12u">
+                                <label for="phone">Phone Number</label>
+                                <input type="text" name="phone"/>
+                            </div>
+                            <div class="4u 12u(xsmall)">
+                                <label for="card">Card Number</label>
+                                <input type="tel" class="form-control" name="cardNumber" placeholder="Valid Card Number" autocomplete="cc-number" required="" autofocus="">
+                            </div>
+                            <div class="4u 12u(xsmall)">
+                                <label for="expired">Expired Date</label>
+                                <input type="tel" class="form-control" name="expired" placeholder="MM / YY" autocomplete="cc-exp" required="">
+                            </div>
+                            <div class="4u 12u(xsmall)">
+                                <label for="cardCVC">Expired Date</label>
+                                <input type="tel" class="form-control" name="cardCVC" placeholder="CVC" autocomplete="cc-csc" required="">
+                            </div>
+                            <div class="12u" style="text-align:center">
+                                <input type="submit" value="Login"/>
+                                <input type="hidden" value="Cancel"/>
+                                <input type="button" value="Cancel"/>
+                            </div>
+                        </div>
+                    </form>-->
+                </div>
+
+            </div>
+
+        </div>
+        
+        <!-- end of Payment -->
 
         <script>
             function calcPay() {
@@ -113,6 +249,26 @@ and open the template in the editor.
                 }
 
 
+            }
+            var modal = document.getElementById("myModal");
+            var span = document.getElementsByClassName("close")[0];
+            var btn = document.getElementById("myBtn");
+            
+            
+            btn.onclick = function () {
+                modal.style.display = "unset";
+            }
+            
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+// When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
             }
         </script>
         <!-- Scripts -->

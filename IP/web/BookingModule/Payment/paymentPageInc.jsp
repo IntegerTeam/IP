@@ -1,6 +1,6 @@
 <%-- 
-    Document   : paymentPage
-    Created on : Nov 23, 2017, 9:36:20 AM
+    Document   : paymentPageInc
+    Created on : Dec 9, 2017, 8:36:51 PM
     Author     : jhz
 --%>
 
@@ -11,11 +11,16 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="../css/awesome.min.css" rel="stylesheet" type="text/css"/>
         <style class="cp-pen-styles">
+            
+            
             table, th, td {
                 border: 1px solid black;
             }
+            body{
+                 margin: 0;
+            }
 
-            body { margin:50px auto; width:600px; }
+/*            body { margin:50px auto; width:600px;}*/
 
             /* CSS for Credit Card Payment form */
             .credit-card-box .panel-title {
@@ -62,11 +67,11 @@
             <div class="row">
                 <!-- You can make it whatever width you want. I'm making it full width
                 on <= small devices and 4/12 page width on >= medium devices -->
-                <div class="col-xs-12 col-md-8">
+                <div class="col-xs-12 col-md-4">
 
                     <!-- CREDIT CARD FORM STARTS HERE -->
                     <div class="panel panel-default credit-card-box">
-                        <div class="panel-heading" >
+                        <div class="panel-heading display-table" >
                             <div class="row display-tr" >
                                 <h3 class="panel-title display-td" >Payment Details</h3>
                                 <div class="display-td"><img class="img-responsive pull-right" src=""></div>
@@ -155,7 +160,36 @@
                         </div>
                     </div>            
                     <!-- CREDIT CARD FORM ENDS HERE -->
+                    
+                    
                 </div>            
+                                
+                <div class="col-xs-12 col-md-4">
+                    <table id="table">
+                        <tr>
+                            <th>No</td>
+                            <th>Homestay</td>
+                            <th>Price(RM)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Total(RM):</td>
+                            <td colspan="2"></td>
+                        </tr>
+                    </table>
+
+
+                </div>
+
 
             </div>
             

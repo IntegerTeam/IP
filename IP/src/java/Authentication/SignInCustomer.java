@@ -43,7 +43,7 @@ try (PrintWriter out = response.getWriter()) {
            customer.setTelNo(rs.getString("custTelNo"));
            HttpSession session = request.getSession();
            session.setAttribute("customer", customer);
-           response.sendRedirect("homestayList.jsp");     
+           response.sendRedirect("customerPage.jsp");     
         }
         else
            response.sendRedirect("index.html");

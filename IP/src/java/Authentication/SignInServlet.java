@@ -47,7 +47,18 @@ try (PrintWriter out = response.getWriter()) {
            staff.setEmail(rs.getString("email"));
            staff.setLevel(rs.getString("level"));
            session.setAttribute("staff",staff);
-           response.sendRedirect("homestayList.jsp");     
+           if(rs.getString("level").equals("owner"))
+           {
+            response.sendRedirect("ownerPage.jsp");  
+           }
+           else if(rs.getString("level").equals("manager"))
+           {
+            response.sendRedirect("managerPage.jsp");  
+           }
+           else if(rs.getString("level").equals("staff"))
+           {
+            response.sendRedirect("staffPage.jsp");  
+           }
         }
         else
            response.sendRedirect("index.html");
