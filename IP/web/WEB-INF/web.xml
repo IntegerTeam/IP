@@ -8,6 +8,10 @@
         <servlet-name>createHomestay</servlet-name>
         <servlet-class>servlet.createHomestay</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>editHomestay</servlet-name>
+        <servlet-class>servlet.editHomestay</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>approveBooking</servlet-name>
         <url-pattern>/approveBooking</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>createHomestay</servlet-name>
         <url-pattern>/createHomestay</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editHomestay</servlet-name>
+        <url-pattern>/editHomestay</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
