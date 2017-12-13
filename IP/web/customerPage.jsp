@@ -159,13 +159,13 @@
 
             <!-- Header -->
             <header id="header">
-                <a href="customerPage.html" class="logo">Homestay</a>
+                <a href="customerPage.jsp" class="logo">Homestay</a>
             </header>
 
             <!-- Nav -->
             <nav id="nav">
                 <ul class="links">							
-                    <li class="active"><a href="houseList.html">Homestay</a></li>
+                    <li class="active"><a href="homestayList.jsp">Homestay</a></li>
                 </ul>
                 <ul class="icons">							
                     <div>
