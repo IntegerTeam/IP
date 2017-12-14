@@ -93,7 +93,7 @@
 
                 <div class="wrapper">                       
                     <button id="regisButton" disabled>Profile</button>
-                    <button id="loginButton">Edit Profile</button>
+                    <button id="loginButton">Edit Profile</button>                    
                 </div>
             </div>
 
@@ -104,26 +104,26 @@
 
             <!-- Header -->
             <header id="header">
-                <a href="staffPage.jsp" class="logo">Homestay</a>
+                <a href="ownerPage.jsp" class="logo">Homestay</a>
             </header>
 
             <!-- Nav -->
             <nav id="nav">
                 <ul class="links">
-                    <li class="active"><a href="staffPage.jsp">Profile</a></li>
-                    <li><a href="#">Schedule</a></li>
-                    <li><a href="#">Report Damage</a></li>
+                    <li><a href="ownerPage.jsp">Profile</a></li>
+                    <li><a href="homestayList.jsp">Homestay List</a></li>
+                    <li class="active"><a href="bookingLog.jsp">Booking Log</a></li>
                 </ul>
                 <ul class="icons">							
                     <li>Currently log-in as: </li>
-                    <li><a id="myBtn" >Staff</a></li>
+                    <li><a id="myBtn" >House Owner</a></li>
                 </ul>
             </nav>
 
             <!-- Main -->
             <div id="main">
 
-                <h2>Profile</h2>
+                <h2>My Profile</h2>
                         <% Staff staff = (Staff) session.getAttribute("staff"); %>
                         <section class="alt">
                             <h3>Name</h3>
