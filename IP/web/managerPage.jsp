@@ -159,8 +159,8 @@
 
                     while (rs.next()) {
                         Homestay ht = new Homestay();
-                        ht.sethouseID(rs.getString("houseID"));
-                        ht.sethouseName(rs.getString("houseName"));
+                        ht.setHouseID(rs.getString("houseID"));
+                        ht.setHouseName(rs.getString("houseName"));
                         homestay.add(ht);
                     }
                 } catch (Exception e) {
@@ -300,7 +300,7 @@
                             <%
                                 if (homestay != null) {
                                     for (Homestay x : homestay) {
-                                        out.print("<option value='" + x.gethouseID() + "'>" + x.gethouseName() + "</option>");
+                                        out.print("<option value='" + x.getHouseID() + "'>" + x.getHouseName() + "</option>");
                                     }
                                 }
                             %>
@@ -350,7 +350,7 @@
                                      <div id='calendar'></div>
 
                 <h2>My Profile</h2>
-                        <% Staff staff = (Staff) session.getAttribute("staff"); %>
+                        
                         <section class="alt">
                             <h3>Name</h3>
                             <input type="text" name="name" value="<%= staff.getName() %>" readonly/><br>
