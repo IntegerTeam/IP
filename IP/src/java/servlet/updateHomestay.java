@@ -9,22 +9,18 @@ import conn.dbConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author User
  */
-public class createHomestay extends HttpServlet {
+public class updateHomestay extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,66 +34,45 @@ public class createHomestay extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        PrintWriter out = response.getWriter();
-        
-        String housename = request.getParameter("housename");
-        String address = request.getParameter("address");
-        String accomodation = request.getParameter("accomodation");
-        int rate = Integer.valueOf(request.getParameter("rate"));
-        
-        try{
-            Connection conn = null;
-            try { 
-                conn = dbConnection.getConnection();  
+        try (PrintWriter out = response.getWriter()) {
+
+            String houseid = request.getParameter("houseid");
+            String housename = request.getParameter("housename");
+            String address = request.getParameter("address");
+            String accomodation = request.getParameter("accomodation");
+            int rate = Integer.valueOf(request.getParameter("rate"));
+
+            try {
+                Connection conn = null;
+                try {
+                    conn = dbConnection.getConnection();
+                } catch (Exception e) {
+                    out.println("Unable to connect to database<br>");
+                }
+                
+                PreparedStatement stmt  = null;
+                String sql = "Update homestay set housename=?, address=?, accomodation=?, rate=? where houseid=?";
+                
+                stmt = conn.prepareStatement(sql);
+                stmt.setString(1, housename);
+                stmt.setString(2, address);
+                stmt.setString(3, accomodation);
+                stmt.setInt(4, rate);
+                stmt.setString(5, houseid);
+                
+                stmt.executeUpdate();
+                
+                response.sendRedirect("homestayList.jsp");
+                
+
             } catch (Exception e) {
-                out.println("Unable to connect to database<br>");
+                e.printStackTrace();
             }
-            
-            String sql1 = "Select * from homestay";
-            Statement stmt = conn.createStatement();
-            ResultSet rset = stmt.executeQuery(sql1);
-            int count = 1;
-            while (rset.next()) {
-            count++;
-            }
-            String houseid = "";
-             if (count < 10) {
-                houseid = "H000" + String.valueOf(count);
-             } else if (count < 100) {
-                houseid = "H00" + String.valueOf(count);
-             } else if (count < 1000) {
-                 houseid = "H0" + String.valueOf(count);
-             } else if (count < 10000) {
-                houseid = "H" + String.valueOf(count);
-             }
-           
-        PreparedStatement stmt2 = null;
-        String sql2 = "INSERT into homestay values (?,?,?,?,?)";
-        stmt2 = conn.prepareStatement(sql2);
-        
-        
-        stmt2.setString(1, houseid);
-        stmt2.setString(2, housename);
-        stmt2.setString(3, address);
-        stmt2.setString(4, accomodation);
-        stmt2.setInt(5, rate);
-        
-        stmt2.executeUpdate();
-        out.print("test");
-        Boolean stat = true;
-        if (stat == true)
-        {
-            response.sendRedirect("homestayList.jsp");
+
         }
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        
-        
     }
-     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -135,5 +110,5 @@ public class createHomestay extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-}
 
+}

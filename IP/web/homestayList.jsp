@@ -220,12 +220,12 @@
                             <p> <%= rset.getString("address")%> </p> 
                             <p> <%= rset.getString("accomodation")%> </p> 
                             <p> <%= rset.getString("rate")%> </p> 
-                            <div class="6u 12u(small)">
+                            
                                 <ul class="actions">
-                                    <% out.print("<li><a href='editHomestay.jsp?housename=" + rset.getString("houseName") + "' class=\"button\">EDIT</a></li>"); %>
-
+                                    <li><% out.print("<li><a href='editHomestay.jsp?houseid=" + rset.getString("houseID") + "' class=\"button\">EDIT</a></li>"); %> </li> 
+                                    <li><% out.print("<li><a href='deleteHomestay?houseid=" + rset.getString("houseID") + "' class=\"button\">DELETE</a></li>"); %> </li>
                                 </ul>
-                            </div>
+                            
                         </div>
                         <% count++;
                             }%>
