@@ -1,11 +1,11 @@
-<%-- 
-    Document   : editHomestay
-    Created on : Dec 8, 2017, 4:24:47 PM
-    Author     : User
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="conn.dbConnection"%>
+<%@page import="java.sql.*"%>
 <!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
     <head>
         <title>Homestay</title>
@@ -13,8 +13,100 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+
+
     </head>
-    <body>
-        
+    <body class="is-loading">
+
+        <!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Header -->
+            <header id="header">
+                <a href="index.html" class="logo">Homestay</a>
+            </header>
+
+            <!-- Nav -->
+            <nav id="nav">
+                <ul class="links">							
+                    <li class="active"><a href="houseList.html">Homestay</a></li>	
+                </ul>
+                <ul class="icons">	
+                    <li>Currently booking as: </li>
+                    <li><a href="" >Guest</a></li>
+                </ul>
+            </nav>
+
+            <!-- Main -->
+            <div id="main">
+                <!-- Post -->
+                <section class="post">
+                    <form method="post" action="updateHomestay" class="alt">
+                        
+                        <div class="row uniform">
+                            <%
+                                String houseid = request.getParameter("houseid");
+                                //int id = Integer.parseInt(houseid);
+                                out.print("<input type=\"hidden\" name=\"houseid\" value=\"" + houseid + "\">");
+
+                                Connection conn = null;
+                                try {
+                                    conn = dbConnection.getConnection();
+
+                                    String sql = "select * from homestay where houseid='"+houseid+"'";
+                                    Statement stmt = conn.createStatement();
+                                    ResultSet rset = stmt.executeQuery(sql);
+                                    while (rset.next()) {
+                            %>
+
+
+                            <div class="6u 12u(xsmall)">
+                                <label for="homestay">House Name</label>
+                                <input type="text" name="housename"  value="<%=rset.getString("housename")%>">
+                            </div>
+                            <div class="6u 12u(xsmall)">
+                                <label for="homestay">Address</label>
+                                <input type="text" name="address"  id="address" value="<%=rset.getString("address")%>">
+                            </div>
+                            <div class="6u 12u(xsmall)">
+                                <label for="homestay">Accomodation</label>
+                                <input type="text" name="accomodation"  value="<%=rset.getString("accomodation")%>">
+                            </div>
+                            <div class="6u 12u(xsmall)">
+                                <label for="homestay">Rate</label>
+                                <input type="text" name="rate" value="<%=rset.getInt("rate")%>">
+                            </div>
+                            <%
+                                    }
+                                } catch (Exception e) {
+                                }
+                            %> 
+
+                            <div class="12u" >
+                                <input type="submit" value="Update"/>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+
+            <!-- Copyright -->
+            <div id="copyright">
+                <ul><li>&copy; Integer</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+            </div>
+
+        </div>
+
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/jquery.scrolly.min.js"></script>
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+
     </body>
 </html>

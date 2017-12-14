@@ -5,8 +5,12 @@
  */
 package servlet;
 
+import conn.dbConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author User
  */
-public class editHomestay extends HttpServlet {
+public class updateHomestay extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,16 +35,40 @@ public class editHomestay extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet editHomestay</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet editHomestay at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+            String houseid = request.getParameter("houseid");
+            String housename = request.getParameter("housename");
+            String address = request.getParameter("address");
+            String accomodation = request.getParameter("accomodation");
+            int rate = Integer.valueOf(request.getParameter("rate"));
+
+            try {
+                Connection conn = null;
+                try {
+                    conn = dbConnection.getConnection();
+                } catch (Exception e) {
+                    out.println("Unable to connect to database<br>");
+                }
+                
+                PreparedStatement stmt  = null;
+                String sql = "Update homestay set housename=?, address=?, accomodation=?, rate=? where houseid=?";
+                
+                stmt = conn.prepareStatement(sql);
+                stmt.setString(1, housename);
+                stmt.setString(2, address);
+                stmt.setString(3, accomodation);
+                stmt.setInt(4, rate);
+                stmt.setString(5, houseid);
+                
+                stmt.executeUpdate();
+                
+                response.sendRedirect("homestayList.jsp");
+                
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
     }
 

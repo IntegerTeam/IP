@@ -76,7 +76,7 @@
                 //          if(!connection.isClosed())
                 //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
                 //          connection.close();
-                String sql = "Select * from staff";
+                String sql = "Select * from booking GROUP BY checkInDate";
                 Statement stmnt = null;
                 stmnt = conn.createStatement();
                 rset = stmnt.executeQuery(sql);
@@ -122,26 +122,38 @@
 
             <!-- Main -->
             <div id="main">
-
-                <h2>My Profile</h2>
-                        <% Staff staff = (Staff) session.getAttribute("staff"); %>
-                        <section class="alt">
-                            <h3>Name</h3>
-                            <input type="text" name="name" value="<%= staff.getName() %>" readonly/><br>
-			
-                            <h3>IC No</h3>
-                            <input type="text" name="icNo" value="<%= staff.getIcNo() %>" readonly/><br>
-			
-                            <h3>Address</h3>
-                            <input type="text" name="address" value="<%= staff.getAddress() %>" readonly/><br>
-			
-                            <h3>Telephone Number</h3>
-                            <input type="text" name="telNo" value="<%= staff.getTelNo() %>" readonly/><br>
-                        
-                            <h3>Email</h3>
-                            <input type="text" name="email" value="<%= staff.getEmail() %>" readonly/><br>
-                        </section>
-
+                <table class="alt">
+                    <thead>
+			<tr>
+				<th>Booking ID</th>
+				<th>Customer Email</th>
+                                <th>Check-In Date</th>
+                                <th>Check-Out Date</th>
+                                <th>Total Payment</th>
+			</tr>
+                    </thead>
+                    <tbody>
+                        <% int count = 1;
+                            while (rset.next()) {
+                        %>
+			<tr>
+                            <td><%= rset.getString("bookingId")%></td>
+                            <td><%= rset.getString("houseID")%></td>
+                            <td> <%= rset.getString("custEmail")%> </td> 
+                            <td> <%= rset.getString("checkInDate")%> </td> 
+                            <td> <%= rset.getString("checkOutDate")%> </td> 
+                            <td> <%= rset.getString("totalPayment")%> </td> 
+                        </div>
+                        <% count++;
+                            }%>
+                    </tbody>
+                    <!--<tfoot>
+			<tr>
+                            <td colspan="5"></td>
+                            <td>100.00</td>
+			</tr>
+                    </tfoot>-->
+                </table>                   
             </div>
 
             <!-- Copyright -->

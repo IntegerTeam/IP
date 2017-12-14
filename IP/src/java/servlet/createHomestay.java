@@ -46,9 +46,6 @@ public class createHomestay extends HttpServlet {
         String accomodation = request.getParameter("accomodation");
         int rate = Integer.valueOf(request.getParameter("rate"));
         
-      
-        
-        
         try{
             Connection conn = null;
             try { 
