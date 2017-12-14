@@ -189,7 +189,54 @@
             <!-- Main -->
             <div id="main">
 
-                <!-- Post -->
+                <!-- Post for House Owner -->
+                <%
+                    if (staff != null) {
+                        if (staff.getLevel().equals("owner")) {
+
+                %>
+                <ul class="actions">
+                    
+                    <% out.print("<li><a href='createHomestay.jsp" + "' class=\"button\">ADD</a></li>"); %>
+                  
+		</ul>
+      
+                <section class="post">
+                    <div class="row">
+                        
+                        <% int count = 1;
+                            while (rset.next()) {
+
+                        %>
+
+                        <div class="6u 12u(small)">
+
+                            <a class="image fit" >
+                                <%                                    //out.print("<img src=\"image/" + rset.getString("houseID") + ".jpg\" alt=\"\" />");
+                                    out.print("<img src=\"image/" + rset.getString("houseID") + ".jpg\" alt=\"\" style=\"max-width:100%;max-height:230px;\" />");
+                                %>
+                            </a>
+                            <h3> <%= rset.getString("houseName")%> </h3>
+                            <p> <%= rset.getString("address")%> </p> 
+                            <p> <%= rset.getString("accomodation")%> </p> 
+                            <p> <%= rset.getString("rate")%> </p> 
+                            <div class="6u 12u(small)">
+                                <ul class="actions">
+                                    <% out.print("<li><a href='editHomestay.jsp?housename=" + rset.getString("houseName") + "' class=\"button\">EDIT</a></li>"); %>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <% count++;
+                            }%>
+                    </div> 
+                </section>
+
+                <%
+                } }
+                    else { 
+                %>
+                <!-- Post for Customer -->
                 <section class="post">
                     <div class="row">
                         <% int count = 1;
@@ -218,6 +265,9 @@
                             }%>
                     </div> 
                 </section>
+                <%
+                    } 
+                %>
 
             </div>
 

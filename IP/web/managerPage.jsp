@@ -273,25 +273,6 @@
         </style>
     </head>
     <body>
-        <%
-            ResultSet rset = null;
-
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection conn = null;
-                conn = MySQL.getMySQLConnection();
-                //          if(!connection.isClosed())
-                //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
-                //          connection.close();
-                String sql = "Select * from staff";
-                Statement stmnt = null;
-                stmnt = conn.createStatement();
-                rset = stmnt.executeQuery(sql);
-
-            } catch (Exception ex) {
-                out.println("Unable to connect to database.");
-            }
-        %>
         <div id="myModal" class="modal">
 
             <!-- Modal content -->
@@ -300,61 +281,7 @@
 
                 <div class="wrapper">                       
                     <button id="regisButton" disabled>Profile</button>
-                    <button id="loginButton">Edit Profile</button>
-
-                    <div id="register">
-                        <hr>
-                        <h2>Profile</h2>
-                        <section class="post">
-                            <form method="post" action="SignUpServlet" class="alt">
-                                <div class="row uniform">                                        
-                                    <div class="6u 12u(xsmall)">
-                                        <label for="name">Name</label>
-                                        <input type="text" name="custName"/>
-                                    </div>
-                                    <div class="6u 12u(xsmall)">
-                                        <label for="telNo">Telephone Number</label>
-                                        <input type="text" name="custTel"/>
-                                    </div>
-                                    <div class="6u 12u(xsmall)">
-                                        <label for="email">Email</label>
-                                        <input type="text" name="custEmail"/>
-                                    </div>
-                                    <div class="6u 12u(xsmall)">
-                                        <label for="password">Password</label>
-                                        <input type="text" name="custPassword"/>
-                                    </div>
-                                    <div class="12u" >
-                                        <input type="submit" value="Register"/>
-                                    </div>
-                                </div>
-                            </form>
-
-
-                        </section>
-                    </div>
-
-                    <div id="login" style="display:none">  
-                        <hr>
-                        <h2>Edit Profile</h2>
-                        <section class="post">
-                            <form method="post" action="SignInCustomer" class="alt">
-                                <div class="row uniform">                                        
-                                    <div class="6u 12u(xsmall)">
-                                        <label for="username">Email</label>
-                                        <input type="text" name="custEmail"/>
-                                    </div>
-                                    <div class="6u 12u(xsmall)">
-                                        <label for="password">Password</label>
-                                        <input type="password" name="custPassword"/>
-                                    </div>
-                                    <div class="12u" >
-                                        <input type="submit" value="Login"/>
-                                    </div>
-                                </div>
-                            </form>
-                    </div>
-                    
+                    <button id="loginButton">Edit Profile</button>                    
                 </div>
             </div>
 
@@ -406,9 +333,10 @@
 
             <!-- Nav -->
             <nav id="nav">
-                <ul class="links">							
-                    <li class="active"><a href="#">Schedule</a></li>
-                    <li><a href="#">Booking Log</a></li>                    
+                <ul class="links">
+                    <li class="active"><a href="managerPage.jsp">Profile</a></li>
+                    <li><a href="#">Schedule</a></li>
+                    <li><a href="#">Booking Log</a></li>	
                 </ul>
                 <ul class="icons">							
                     <li>Currently log-in as: </li>
@@ -421,9 +349,24 @@
             <div id="main">
                                      <div id='calendar'></div>
 
-                <!-- Post -->
-                <section class="post">
-                </section>
+                <h2>My Profile</h2>
+                        <% Staff staff = (Staff) session.getAttribute("staff"); %>
+                        <section class="alt">
+                            <h3>Name</h3>
+                            <input type="text" name="name" value="<%= staff.getName() %>" readonly/><br>
+			
+                            <h3>IC No</h3>
+                            <input type="text" name="icNo" value="<%= staff.getIcNo() %>" readonly/><br>
+			
+                            <h3>Address</h3>
+                            <input type="text" name="address" value="<%= staff.getAddress() %>" readonly/><br>
+			
+                            <h3>Telephone Number</h3>
+                            <input type="text" name="telNo" value="<%= staff.getTelNo() %>" readonly/><br>
+                        
+                            <h3>Email</h3>
+                            <input type="text" name="email" value="<%= staff.getEmail() %>" readonly/><br>
+                        </section>
 
             </div>
 

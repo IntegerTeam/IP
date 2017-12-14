@@ -13,7 +13,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import beans.Homestay;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,13 +40,13 @@ public class createHomestay extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         PrintWriter out = response.getWriter();
-        //String houseid = request.getParameter("houseid");
+        
         String housename = request.getParameter("housename");
         String address = request.getParameter("address");
         String accomodation = request.getParameter("accomodation");
         int rate = Integer.valueOf(request.getParameter("rate"));
         
-      //  Homestay homestay = new Homestay(houseid, housename, address, accomodation, rate);
+      
         
         
         try{
