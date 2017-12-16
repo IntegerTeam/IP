@@ -74,30 +74,37 @@ public class approveBooking extends HttpServlet {
             String sql1 = "Select * from booking";
             Statement stmt = conn.createStatement();
             ResultSet rset = stmt.executeQuery(sql1);
-
+            
             int count = 1;
             while (rset.next()) {
                 count++;
             }
+            
+            String sql3 = "Select houseID from integer2.homestay where houseName = '"+homestay+"';";
+            ResultSet rset2 = stmt.executeQuery(sql3);
+            String houseID = "";
+            while(rset2.next()){
+                houseID = rset2.getString(1);
+            }
+
             String bookID = "";
             if (count < 10) {
-                bookID = "BK0000" + String.valueOf(count);
-            } else if (count < 100) {
                 bookID = "BK000" + String.valueOf(count);
-            } else if (count < 1000) {
+            } else if (count < 100) {
                 bookID = "BK00" + String.valueOf(count);
-            } else if (count < 10000) {
+            } else if (count < 1000) {
                 bookID = "BK0" + String.valueOf(count);
-            } else if (count < 100000) {
+            } else if (count < 10000) {
                 bookID = "BK" + String.valueOf(count);
             }
             System.out.println("Youhave been hacked");
+            System.out.println(bookID);
 
             String sql2 = "insert into booking values(?,?,?,?,?,?)";
             PreparedStatement stmt2 = conn.prepareStatement(sql2);
             
             stmt2.setString(1, bookID);
-            stmt2.setString(2, homestay);
+            stmt2.setString(2, houseID);
             stmt2.setString(3, custEmail);
             stmt2.setDate(4, sqlStartDate);
             stmt2.setDate(5, sqlEndDate);
@@ -113,7 +120,7 @@ public class approveBooking extends HttpServlet {
             
             stmt2.executeUpdate();
             
-            response.sendRedirect("BookingModule/Payment/paymentPage.jsp");
+            response.sendRedirect(request.getContextPath() + "/BookingModule/Payment/receipt.jsp");
         } catch (Exception e) {
             e.printStackTrace();
 
