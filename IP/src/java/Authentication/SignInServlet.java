@@ -55,7 +55,7 @@ public class SignInServlet extends HttpServlet {
                         response.sendRedirect("ownerPage.jsp");
                     } else if (rs.getString("level").equals("manager")) {
                         response.sendRedirect("managerPage.jsp");
-                    } else if (rs.getString("level").equals("staff")) {
+                    } else if (rs.getString("level").equals("worker")) {
                         response.sendRedirect("staffPage.jsp");
                     }
                 } else {
