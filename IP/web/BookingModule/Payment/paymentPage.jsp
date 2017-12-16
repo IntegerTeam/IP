@@ -57,7 +57,8 @@
             /* Just looks nicer */
             .credit-card-box .panel-heading img {
                 min-width: 180px;
-            }</style></head><body>
+            }</style></head>
+    <body>
         <div class="container">
             <div class="row">
                 <!-- You can make it whatever width you want. I'm making it full width
@@ -73,7 +74,7 @@
                             </div>                    
                         </div>
                         <div class="panel-body">
-                            <form role="form" id="payment-form">
+                            <form role="form" id="payment-form" onsubmit="myFunction()">
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="form-group">
@@ -86,7 +87,7 @@
                                     <div class="col-xs-12">
                                         <div class="form-group">
                                             <label for="contactN">Contact Number</label>
-                                            <input type="text" class="form-control" name="contactN" />
+                                            <input type="text" class="form-control" id="contactN" name="contactN" />
                                         </div>
                                     </div>                        
                                 </div>
@@ -94,7 +95,7 @@
                                     <div class="col-xs-12">
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            <input type="text" class="form-control" name="email" />
+                                            <input type="text" id="email" class="form-control" name="email" />
                                         </div>
                                     </div>                        
                                 </div>
@@ -164,6 +165,20 @@
 
         <!-- If you're using Stripe for payments -->
         <script src="../js/v2.js" type="text/javascript"></script>
+        <script>
+           
+            function myFunction() {
+                parent.closeIFrame();
+            }
+            
+            function setupValue(start,end,homestay,email,total,phone){
+                
+                if (total !== null){
+                    document.getElementById("email").value = email;
+                    document.getElementById("contactN").value = phone;
+                }
+            }
+        </script>
 
     </body>
 </html>

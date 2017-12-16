@@ -1,3 +1,6 @@
+<%@page import="java.sql.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="beans.Payment"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -11,6 +14,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        
         <%
             String housename = request.getParameter("housename");
             int rate = Integer.valueOf(request.getParameter("rate"));
@@ -143,11 +147,11 @@ and open the template in the editor.
                             </div>
                             <div class="6u 12u(xsmall)">
                                 <label for="homestay">Homestay</label>
-                                <input type="text" name="houseName" value="<%=housename%>" placeholder="Homestay" readonly/>
+                                <input type="text" name="houseName" id="houseName" value="<%=housename%>" placeholder="Homestay" readonly/>
                             </div>
                             <div class="6u 12u(xsmall)">
                                 <label for="homestay">Email</label>
-                                <input type="text" name="email" placeholder="Email" />
+                                <input type="text" name="email" id="email" placeholder="Email" />
                             </div>
 
                             <div class="6u 12u(xsmall)">
@@ -156,7 +160,7 @@ and open the template in the editor.
                             </div>
                             <div class="6u 12u(xsmall)">
                                 <label for="homestay">Phone number</label>
-                                <input type="text" name="phoneNo"  value="" placeholder="Phone Number" />
+                                <input type="text" name="phoneNo"  id="phone" value="" placeholder="Phone Number" />
                             </div>
 
                             <div class="12u" >
@@ -190,7 +194,7 @@ and open the template in the editor.
                 <div class="wrapper">
                    <div class="modal-body">
                        <div class="popup">
-                    <iframe src="BookingModule/Payment/paymentPage.jsp" name="targetframe" allowTransparency="true" scrolling="yes" frameborder="0" width="100%" style="height:50em">
+                    <iframe id ="frameid" src="BookingModule/Payment/paymentPage.jsp" name="targetframe" allowTransparency="true" scrolling="yes" frameborder="0" width="100%" style="height:50em">
                     </iframe>  
                            </div>
                     </div>
@@ -254,8 +258,34 @@ and open the template in the editor.
             var span = document.getElementsByClassName("close")[0];
             var btn = document.getElementById("myBtn");
             
-            
+
             btn.onclick = function () {
+                var start = Date.parse(document.getElementById("start").value);
+                var end = Date.parse(document.getElementById("end").value);
+                var email = document.getElementById("email").value;
+                var pay = document.getElementById("pay").value;
+                var homestay = "<%=housename%>";
+                var contact = document.getElementById("phone").value;
+                document.getElementById("frameid").contentWindow.setupValue(start,end,homestay,email,pay,contact);
+          
+                <%
+//                    Payment payment = new Payment();
+//                    SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy");
+//                    java.util.Date date = sdf1.parse("<script>document.writeln(start)</script>");
+//                    java.sql.Date startDate = new Date(date.getTime());
+//                    date = sdf1.parse("<script>document.writeln(end)</script>");
+//                    java.sql.Date endDate = new Date(date.getTime());
+                    
+////                    payment bean
+//                    payment.setStartDate(startDate);
+//                    payment.setEndDate(endDate);
+//                    payment.setHomestay(housename);
+//                    payment.setEmail("<script>document.writeln(end)</script>");
+//                    payment.setTotalPay(Float.parseFloat("<script>document.writeln(pay)</script>"));
+//                    
+//                    session.setAttribute("paymentSession", payment);
+
+                %>
                 modal.style.display = "unset";
             }
             
@@ -278,6 +308,21 @@ and open the template in the editor.
         <script src="assets/js/skel.min.js"></script>
         <script src="assets/js/util.js"></script>
         <script src="assets/js/main.js"></script>
+        <script>
+            
+            function closeIFrame(){
+                $('#frameid').remove();
+                var start = (document.getElementById("start").value);
+                var end = (document.getElementById("end").value);
+                var email = document.getElementById("email").value;
+                var pay = document.getElementById("pay").value;
+                var homestay = "<%=housename%>";
+                var contact = document.getElementById("phone").value;
+                var request = 'houseName='+homestay+'&checkin='+start+'&checkout='+end+'&email='+email+'&totalPay='+pay;
+                document.location.href = '${pageContext.request.contextPath}/approveBooking?'+request;
+            }
+            
+        </script>
 
     </body>
 </html>
