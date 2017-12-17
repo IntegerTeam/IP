@@ -155,7 +155,6 @@
 
         </div>
     </body>
-
     
     <script>
 // Get the modal
