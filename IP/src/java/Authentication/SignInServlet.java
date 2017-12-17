@@ -61,7 +61,6 @@ public class SignInServlet extends HttpServlet {
                 } else {
                     response.sendRedirect("index.html");
                 }
-
             } catch (ClassNotFoundException | SQLException e2) {
                 System.out.println(e2);
             }
