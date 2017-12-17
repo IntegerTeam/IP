@@ -9,38 +9,21 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Statement"%>
-<%@page import="java.util.*"%>
-<%@page import="java.sql.*"%>
 <%@page import="beans.*"%>
-<%@page import="com.google.gson.Gson"%>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html> 
     <head>
         <title> LIST OF HOMESTAYS </title>
-        
-        <script src='lib/jquery.min.js'></script>
-        <script src='lib/moment.min.js'></script>
-        <script src='lib/fullcalendar.min.js'></script>
-        
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/skel.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-        <link href='lib/fullcalendar.min.css' rel='stylesheet' />
-        <link href='lib/fullcalendar.print.min.css' rel='stylesheet' media='print' />        
-        
+
         <style>
             /* The Modal (background) */
             .modal {
@@ -81,12 +64,27 @@
                 cursor: pointer;
             }
         </style>
-        
-        <%
-            Staff staff = (Staff) session.getAttribute("staff");
-        %>
     </head>
     <body>
+        <%
+            ResultSet rset = null;
+
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection conn = null;
+                conn = MySQL.getMySQLConnection();
+                //          if(!connection.isClosed())
+                //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
+                //          connection.close();
+                String sql = "Select * from staff";
+                Statement stmnt = null;
+                stmnt = conn.createStatement();
+                rset = stmnt.executeQuery(sql);
+
+            } catch (Exception ex) {
+                out.println("Unable to connect to database.");
+            }
+        %>
         <div id="myModal" class="modal">
 
             <!-- Modal content -->
@@ -95,40 +93,38 @@
 
                 <div class="wrapper">                       
                     <button id="regisButton" disabled>Profile</button>
-                    <button id="loginButton">Edit Profile</button>                    
+                    <button id="loginButton">Edit Profile</button>
                 </div>
             </div>
 
-        </div> 
-        
+        </div>                
 
 
         <div id="wrapper">
 
             <!-- Header -->
             <header id="header">
-                <a href="managerPage.jsp" class="logo">Homestay</a>
+                <a href="staffPage.jsp" class="logo">Homestay</a>
             </header>
 
             <!-- Nav -->
             <nav id="nav">
                 <ul class="links">
-                    <li class="active"><a href="managerPage.jsp">Profile</a></li>
-                    <li><a href="scheduleM.jsp">Schedule</a></li>
-                    <li><a href="#">Booking Log</a></li>	
+                    <li class="active"><a href="staffPage.jsp">Profile</a></li>
+                    <li><a href="scheduleW">Schedule</a></li>
+                    <li><a href="#">Report Damage</a></li>
                 </ul>
                 <ul class="icons">							
                     <li>Currently log-in as: </li>
-                    <li><a id="myBtn" >Manager</a></li>
+                    <li><a id="myBtn" >Staff</a></li>
                 </ul>
             </nav>
 
             <!-- Main -->
-            
-            <div id="main">                                     
+            <div id="main">
 
-                <h2>My Profile</h2>
-                        
+                <h2>Profile</h2>
+                        <% Staff staff = (Staff) session.getAttribute("staff"); %>
                         <section class="alt">
                             <h3>Name</h3>
                             <input type="text" name="name" value="<%= staff.getName() %>" readonly/><br>
@@ -155,7 +151,13 @@
 
         </div>
     </body>
-    
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
     <script>
 // Get the modal
         var modal = document.getElementById("myModal");
@@ -200,17 +202,6 @@
             }
         }  
     </script>
-     <script>
-            document.getElementsByClassName("close2")[0].onclick = function () {
-                document.getElementById("myModal2").style.display = "none";
-            }
-            
-            window.onclick = function (event) {
-                if (event.target == document.getElementById("myModal2")) {
-                    document.getElementById("myModal2").style.display = "none";
-                }
-            }
-        </script>
 </html>
 
 
