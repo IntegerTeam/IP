@@ -280,8 +280,7 @@
                 <span class="close">&times;</span>
 
                 <div class="wrapper">                       
-                    <button id="regisButton" disabled>Profile</button>
-                    <button id="loginButton">Edit Profile</button>                    
+                    <a href="SignOutServlet" class="button">Log-Out</a>                   
                 </div>
             </div>
 
@@ -336,7 +335,7 @@
                 <ul class="links">
                     <li><a href="managerPage.jsp">Profile</a></li>
                     <li class="active"><a href="scheduleM.jsp">Schedule</a></li>
-                    <li><a href="#">Booking Log</a></li>	
+                    <li><a href="bookingLog.jsp">Booking Log</a></li>	
                 </ul>
                 <ul class="icons">							
                     <li>Currently log-in as: </li>

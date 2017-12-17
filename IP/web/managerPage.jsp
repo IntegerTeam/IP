@@ -114,7 +114,7 @@
                 <ul class="links">
                     <li class="active"><a href="managerPage.jsp">Profile</a></li>
                     <li><a href="scheduleM.jsp">Schedule</a></li>
-                    <li><a href="#">Booking Log</a></li>	
+                    <li><a href="bookingLog.jsp">Booking Log</a></li>	
                 </ul>
                 <ul class="icons">							
                     <li>Currently log-in as: </li>
