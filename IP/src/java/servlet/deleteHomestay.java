@@ -9,8 +9,10 @@ import conn.dbConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -37,24 +39,49 @@ public class deleteHomestay extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
             String houseid = request.getParameter("houseid");
-            
-                Connection conn = null;
-                try {
-                    conn = dbConnection.getConnection();
-                } catch (Exception e) {
-                    out.println("Unable to connect to database<br>");
+
+            Connection conn = null;
+            try {
+                conn = dbConnection.getConnection();
+            } catch (Exception e) {
+                out.println("Unable to connect to database<br>");
+            }
+
+            String sql = "Delete From homestay where houseid='" + houseid + "'";
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+
+            String sql2 = "Select * from homestay";
+            Statement stmt2 = conn.createStatement();
+            ResultSet rset = stmt.executeQuery(sql2);
+            int i = 1;
+            ArrayList<String> sqlarray = new ArrayList<String>();
+            while (rset.next()) {
+                System.out.println(i);
+                String house = "";
+                if (i < 10) {
+                    house = "H000" + String.valueOf(i);
+                } else if (i < 100) {
+                    house = "H00" + String.valueOf(i);
+                } else if (i < 1000) {
+                    house = "H0" + String.valueOf(i);
+                } else if (i < 10000) {
+                    house = "H" + String.valueOf(i);
                 }
-                
-                String sql = "Delete From homestay where houseid='"+houseid+"'";
-                Statement stmt = conn.createStatement();
-                stmt.executeUpdate(sql);
-                
-                response.sendRedirect("homestayList.jsp");
-                
-                
-                
+                String sql3 = "Update homestay set houseid='" + house + "' where houseid='" + rset.getString(1) + "';";
+                sqlarray.add(sql3);
+                i++;
+                //stmt.executeUpdate(sql3);
+            }
+
+            for (String s : sqlarray) {
+                stmt.executeUpdate(s);
+            }
+
+            response.sendRedirect("homestayList.jsp");
+
         }
     }
 
@@ -105,5 +132,3 @@ public class deleteHomestay extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 }
-
-
