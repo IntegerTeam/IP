@@ -20,19 +20,19 @@
 <html> 
     <head>
         <title> LIST OF HOMESTAYS </title>
-        
+
         <script src='lib/jquery.min.js'></script>
         <script src='lib/moment.min.js'></script>
         <script src='lib/fullcalendar.min.js'></script>
-        
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/skel.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/jquery.scrolly.min.js"></script>
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        
+
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
@@ -40,7 +40,7 @@
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         <link href='lib/fullcalendar.min.css' rel='stylesheet' />
         <link href='lib/fullcalendar.print.min.css' rel='stylesheet' media='print' />        
-        
+
         <style>
             /* The Modal (background) */
             .modal {
@@ -81,9 +81,38 @@
                 cursor: pointer;
             }
         </style>
-        
+
         <%
             Staff staff = (Staff) session.getAttribute("staff");
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con;
+                con = MySQL.getMySQLConnection();
+
+                PreparedStatement pst = con.prepareStatement("Select * from staff where username=?");
+                pst.setString(1, staff.getUsername());
+
+                ResultSet rs = pst.executeQuery();
+
+                if (rs.next()) {                    
+                    if (session != null) {
+                        session.invalidate();
+                        session = request.getSession();
+                    }
+                    staff.setUsername(rs.getString("username"));
+                    staff.setName(rs.getString("name"));
+                    staff.setIcNo(rs.getString("icNo"));
+                    staff.setAddress(rs.getString("address"));
+                    staff.setTelNo(rs.getString("telNo"));
+                    staff.setEmail(rs.getString("email"));
+                    staff.setLevel(rs.getString("level"));
+                    session.setAttribute("staff", staff);
+                }
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+            
         %>
     </head>
     <body>
@@ -100,7 +129,7 @@
             </div>
 
         </div> 
-        
+
 
 
         <div id="wrapper">
@@ -124,27 +153,33 @@
             </nav>
 
             <!-- Main -->
-            
+
             <div id="main">                                     
 
                 <h2>My Profile</h2>
-                        
-                        <section class="alt">
-                            <h3>Name</h3>
-                            <input type="text" name="name" value="<%= staff.getName() %>" readonly/><br>
-			
-                            <h3>IC No</h3>
-                            <input type="text" name="icNo" value="<%= staff.getIcNo() %>" readonly/><br>
-			
-                            <h3>Address</h3>
-                            <input type="text" name="address" value="<%= staff.getAddress() %>" readonly/><br>
-			
-                            <h3>Telephone Number</h3>
-                            <input type="text" name="telNo" value="<%= staff.getTelNo() %>" readonly/><br>
-                        
-                            <h3>Email</h3>
-                            <input type="text" name="email" value="<%= staff.getEmail() %>" readonly/><br>
-                        </section>
+
+                <section class="alt">
+                    <form action="updateStaff">
+                        <input type="hidden" name="username" id="input1" value="<%= staff.getUsername() %>" />
+                        <h3>Name</h3>
+                        <input type="text" name="name" id="input1" value="<%= staff.getName()%>" readonly/><br>
+
+                        <h3>IC No</h3>
+                        <input type="text" name="icNo" id="input2" value="<%= staff.getIcNo()%>" readonly/><br>
+
+                        <h3>Address</h3>
+                        <input type="text" name="address" id="input3" value="<%= staff.getAddress()%>" readonly/><br>
+
+                        <h3>Telephone Number</h3>
+                        <input type="text" name="telNo" id="input4" value="<%= staff.getTelNo()%>" readonly/><br>
+
+                        <h3>Email</h3>
+                        <input type="text" name="email" id="input5" value="<%= staff.getEmail()%>" readonly/><br>
+                        <input type="button" id="edit" value="Edit">
+                        <input type="button" id="cancel" style="display:none" value="Cancel">
+                        <input type="submit">
+                    </form>                            
+                </section>
 
             </div>
 
@@ -155,7 +190,32 @@
 
         </div>
     </body>
-    
+    <script>
+        var btnEdit = document.getElementById("edit");
+        var btnCancel = document.getElementById("cancel");
+        var input1 = document.getElementById("input1");
+        var input2 = document.getElementById("input2");
+        var input3 = document.getElementById("input3");
+        var input4 = document.getElementById("input4");
+        var input5 = document.getElementById("input5");
+
+        btnEdit.onclick = function() {
+            btnEdit.style.display = "none";
+            btnCancel.style.display = "unset";
+            input3.removeAttribute("readonly");
+            input4.removeAttribute("readonly");
+            input5.removeAttribute("readonly");
+        }
+        
+        btnCancel.onclick = function() {
+            btnEdit.style.display = "unset";
+            btnCancel.style.display = "none";
+            input3.setAttribute("readonly", true);
+            input3.setAttribute("readonly", true);
+            input3.setAttribute("readonly", true);
+        }
+
+    </script>
     <script>
 // Get the modal
         var modal = document.getElementById("myModal");
@@ -198,19 +258,19 @@
             if (event.target == modal) {
                 modal.style.display = "none";
             }
-        }  
+        }
     </script>
-     <script>
-            document.getElementsByClassName("close2")[0].onclick = function () {
+    <script>
+        document.getElementsByClassName("close2")[0].onclick = function () {
+            document.getElementById("myModal2").style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == document.getElementById("myModal2")) {
                 document.getElementById("myModal2").style.display = "none";
             }
-            
-            window.onclick = function (event) {
-                if (event.target == document.getElementById("myModal2")) {
-                    document.getElementById("myModal2").style.display = "none";
-                }
-            }
-        </script>
+        }
+    </script>
 </html>
 
 
