@@ -239,13 +239,10 @@
                         }
                     },
                     eventClick: function (calEvent, jsEvent, view) {
-
-                        alert('Worker: ' + calEvent.title + "\n" +
+                       if(calEvent.type == 'schedule'){
+                            alert('Worker: ' + calEvent.title + "\n" +
                                 'Homestay: ' + calEvent.description);
-
-                        // change the border color just for fun
-                        $(this).css('border-color', 'red');
-
+                        }
                     },
                     editable: true,
                     eventLimit: true, // allow "more" link when too many events
