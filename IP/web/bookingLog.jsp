@@ -92,8 +92,7 @@
                 <span class="close">&times;</span>
 
                 <div class="wrapper">                       
-                    <button id="regisButton" disabled>Profile</button>
-                    <button id="loginButton">Edit Profile</button>                    
+                    <a href="SignOutServlet" class="button">Log-Out</a>                   
                 </div>
             </div>
 
@@ -112,11 +111,13 @@
                 <ul class="links">
                     <li><a href="ownerPage.jsp">Profile</a></li>
                     <li><a href="homestayList.jsp">Homestay List</a></li>
-                    <li class="active"><a href="bookingLog.jsp">Booking Log</a></li>
+                    <li><a href="bookingLog.jsp" class="active">Booking Log</a></li>
                 </ul>
                 <ul class="icons">							
-                    <li>Currently log-in as: </li>
-                    <li><a id="myBtn" >House Owner</a></li>
+                    <ul class="icons">
+                    <% Staff staff = (Staff) session.getAttribute("staff"); %>
+                   <li>Currently logged in as:  <a id="myBtn" ><%=staff.getName()%></a></li>
+                </ul>
                 </ul>
             </nav>
 
