@@ -20,6 +20,10 @@
         <servlet-name>deleteHomestay</servlet-name>
         <servlet-class>servlet.deleteHomestay</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SignOutServlet</servlet-name>
+        <servlet-class>Authentication.SignOutServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>approveBooking</servlet-name>
         <url-pattern>/approveBooking</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>deleteHomestay</servlet-name>
         <url-pattern>/deleteHomestay</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignOutServlet</servlet-name>
+        <url-pattern>/SignOutServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
