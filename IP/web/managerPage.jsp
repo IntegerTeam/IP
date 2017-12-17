@@ -159,12 +159,12 @@
 
                 <section class="alt">
                     <form action="updateStaff">
-                        <input type="hidden" name="username" id="input1" value="<%= staff.getUsername() %>" />
+                        <input type="hidden" name="username" value="<%= staff.getUsername() %>" />
                         <h3>Name</h3>
-                        <input type="text" name="name" id="input1" value="<%= staff.getName()%>" readonly/><br>
+                        <input type="text" name="name" value="<%= staff.getName()%>" readonly/><br>
 
                         <h3>IC No</h3>
-                        <input type="text" name="icNo" id="input2" value="<%= staff.getIcNo()%>" readonly/><br>
+                        <input type="text" name="icNo" value="<%= staff.getIcNo()%>" readonly/><br>
 
                         <h3>Address</h3>
                         <input type="text" name="address" id="input3" value="<%= staff.getAddress()%>" readonly/><br>
@@ -173,7 +173,7 @@
                         <input type="text" name="telNo" id="input4" value="<%= staff.getTelNo()%>" readonly/><br>
 
                         <h3>Email</h3>
-                        <input type="text" name="email" id="input5" value="<%= staff.getEmail()%>" readonly/><br>
+                        <input type="text" name="email" id="input5" value="<%= staff.getEmail()%>" readonly/><br><br>
                         <input type="button" id="edit" value="Edit">
                         <input type="button" id="cancel" style="display:none" value="Cancel">
                         <input type="submit">
@@ -192,8 +192,6 @@
     <script>
         var btnEdit = document.getElementById("edit");
         var btnCancel = document.getElementById("cancel");
-        var input1 = document.getElementById("input1");
-        var input2 = document.getElementById("input2");
         var input3 = document.getElementById("input3");
         var input4 = document.getElementById("input4");
         var input5 = document.getElementById("input5");
