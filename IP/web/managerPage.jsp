@@ -123,8 +123,7 @@
                 <span class="close">&times;</span>
 
                 <div class="wrapper">                       
-                    <button id="regisButton" disabled>Profile</button>
-                    <button id="loginButton">Edit Profile</button>                    
+                    <a href="SignOutServlet" class="button">Log-Out</a>                   
                 </div>
             </div>
 
