@@ -168,6 +168,7 @@
                 <%  Customer customer = (Customer) session.getAttribute("customer");
                     Staff staff = (Staff) session.getAttribute("staff");
                     if (customer != null) {
+                        out.print("<ul class='links'></ul>");
                         out.print("<ul class='icons'>");
                         out.print("Currently booking as:<li><a >" + customer.getName() + "</a></li></ul>");
                     } else if (staff != null) {
@@ -178,6 +179,7 @@
                         out.print("<ul class='icons'>");
                         out.print("Currently logged in as:<li><a >" + staff.getName() + "</a></li></ul>");
                     } else {
+                        out.print("<ul class='links'></ul>");
                         out.print("<ul class='icons'>");
                         out.print("Currently booking as:<li><a id=\"myBtn\" >Guest</a></li></ul>");
                     }
