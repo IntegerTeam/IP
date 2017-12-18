@@ -76,7 +76,14 @@
                 //          if(!connection.isClosed())
                 //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
                 //          connection.close();
-                String sql = "Select * from booking where month(checkOutDate)=12";
+                String sql = null;
+                String search = request.getParameter("search");
+                String month = request.getParameter("month");
+                if (search == null) {
+                    sql = "Select * from booking";
+                } else if (search.equals("1")) {
+                    sql = "Select * from booking where month(checkOutDate)='"+month+"'";
+                }
                 Statement stmnt = null;
                 stmnt = conn.createStatement();
                 rset = stmnt.executeQuery(sql);
@@ -130,25 +137,31 @@
             <!-- Main -->
             <div id="main">
                 
-                <div class="12u$">
-                    <div class="select-wrapper">
-			<select name="demo-category" id="demo-category">
-                            <option value="">- Search by Month -</option>
-                            <option value="1">January</option>
-                            <option value="1">February</option>
-                            <option value="1">March</option>
-                            <option value="1">April</option>
-                            <option value="1">May</option>
-                            <option value="1">June</option>
-                            <option value="1">July</option>
-                            <option value="1">August</option>
-                            <option value="1">September</option>
-                            <option value="1">October</option>
-                            <option value="1">November</option>
-                            <option value="1">December</option>
-                        </select>
+                <form action="bookingLog.jsp">
+                    <input type="hidden" name="search" value="1">
+                    <div class="6u 12u(small)">
+                        <div class="12u">
+                        <div class="select-wrapper">
+                            <select name="month" id="demo-category">
+                                <option value="">- Search by Month -</option>
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                        </div>
+                        </div>
                     </div>
-                </div>
+                    <input type="submit" value="SEARCH"/>
+                </form>
                 
                 <table class="alt">
                     <thead>
@@ -175,12 +188,6 @@
                         <% count++;
                             }%>
                     </tbody>
-                    <!--<tfoot>
-			<tr>
-                            <td colspan="5"></td>
-                            <td>100.00</td>
-			</tr>
-                    </tfoot>-->
                 </table>                   
             </div>
 
