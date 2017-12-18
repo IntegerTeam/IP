@@ -210,8 +210,8 @@
             btnEdit.style.display = "unset";
             btnCancel.style.display = "none";
             input3.setAttribute("readonly", true);
-            input3.setAttribute("readonly", true);
-            input3.setAttribute("readonly", true);
+            input4.setAttribute("readonly", true);
+            input5.setAttribute("readonly", true);
         }
 
     </script>
