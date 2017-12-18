@@ -1,8 +1,9 @@
 <%-- 
-    Document   : contoh2
-    Created on : Nov 23, 2017, 11:23:10 AM
-    Author     : User
+    Document   : custHistory
+    Created on : Dec 18, 2017, 8:10:37 PM
+    Author     : Ikmal
 --%>
+
 <%@page import="conn.MySQL"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.sql.Connection"%>
@@ -67,6 +68,7 @@
     </head>
     <body>
         <%
+            Customer customer = (Customer)session.getAttribute("customer");
             ResultSet rset = null;
 
             try {
@@ -76,7 +78,7 @@
                 //          if(!connection.isClosed())
                 //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
                 //          connection.close();
-                String sql = "Select * from booking GROUP BY checkInDate";
+                String sql = "Select * from booking join homestay on homestay.houseID = booking.houseID where custEmail = '"+customer.getEmail()+"' GROUP BY checkInDate";
                 Statement stmnt = null;
                 stmnt = conn.createStatement();
                 rset = stmnt.executeQuery(sql);
@@ -109,14 +111,13 @@
             <!-- Nav -->
             <nav id="nav">
                 <ul class="links">
-                    <li><a href="ownerPage.jsp">Profile</a></li>
+                    <li><a href="customerPage.jsp">Profile</a></li>
                     <li><a href="homestayList.jsp">Homestay List</a></li>
-                    <li><a href="bookingLog.jsp" class="active">Booking Log</a></li>
+                    <li class="active"><a href="custHistory.jsp" class="active">Booking History</a></li>
                 </ul>
                 <ul class="icons">							
-                    <ul class="icons">
-                    <% Staff staff = (Staff) session.getAttribute("staff"); %>
-                   <li>Currently logged in as:  <a id="myBtn" ><%=staff.getName()%></a></li>
+                    <ul class="icons">                    
+                   <li>Currently logged in as:  <a id="myBtn" ><%=customer.getName()%></a></li>
                 </ul>
                 </ul>
             </nav>
@@ -126,7 +127,7 @@
                 <table class="alt">
                     <thead>
 			<tr>
-				<th>Booking ID</th>
+				<th>Homestay</th>
 				<th>Customer Email</th>
                                 <th>Check-In Date</th>
                                 <th>Check-Out Date</th>
@@ -138,8 +139,7 @@
                             while (rset.next()) {
                         %>
 			<tr>
-                            <td><%= rset.getString("bookingId")%></td>
-                            <td><%= rset.getString("houseID")%></td>
+                            <td><%= rset.getString("houseName")%></td>
                             <td> <%= rset.getString("custEmail")%> </td> 
                             <td> <%= rset.getString("checkInDate")%> </td> 
                             <td> <%= rset.getString("checkOutDate")%> </td> 

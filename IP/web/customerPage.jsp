@@ -9,7 +9,10 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Statement"%>
-<%@page import="beans.Customer"%>
+<%@page import="java.util.*"%>
+<%@page import="java.sql.*"%>
+<%@page import="beans.*"%>
+<%@page import="com.google.gson.Gson"%>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,13 +20,26 @@
 <html> 
     <head>
         <title> LIST OF HOMESTAYS </title>
+
+        <script src='lib/jquery.min.js'></script>
+        <script src='lib/moment.min.js'></script>
+        <script src='lib/fullcalendar.min.js'></script>
+
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/jquery.scrolly.min.js"></script>
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <link href='lib/fullcalendar.min.css' rel='stylesheet' />
+        <link href='lib/fullcalendar.print.min.css' rel='stylesheet' media='print' />        
 
         <style>
             /* The Modal (background) */
@@ -65,27 +81,37 @@
                 cursor: pointer;
             }
         </style>
-    </head>
-    <body>
-        <%
-            ResultSet rset = null;
 
+        <%
+            Customer customer = (Customer) session.getAttribute("customer");
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection conn = null;
-                conn = MySQL.getMySQLConnection();
-                //          if(!connection.isClosed())
-                //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
-                //          connection.close();
-                String sql = "Select houseID, houseName, address, accomodation, rate from homestay";
-                Statement stmnt = null;
-                stmnt = conn.createStatement();
-                rset = stmnt.executeQuery(sql);
+                Connection con;
+                con = MySQL.getMySQLConnection();
 
-            } catch (Exception ex) {
-                out.println("Unable to connect to database.");
+                PreparedStatement pst = con.prepareStatement("Select * from customer where custEmail=?");
+                pst.setString(1, customer.getEmail());
+
+                ResultSet rs = pst.executeQuery();
+
+                if (rs.next()) {                    
+                    if (session != null) {
+                        session.invalidate();
+                        session = request.getSession();
+                    }
+                    customer.setEmail(rs.getString("custEmail"));
+                    customer.setName(rs.getString("name"));
+                    customer.setTelNo(rs.getString("custTelNo"));
+                    session.setAttribute("customer", customer);
+                }
             }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+            
         %>
+    </head>
+    <body>
         <div id="myModal" class="modal">
 
             <!-- Modal content -->
@@ -93,126 +119,53 @@
                 <span class="close">&times;</span>
 
                 <div class="wrapper">                       
-                    <button id="regisButton" disabled>Registration</button>
-                    <button id="loginButton">Login</button>
-
-                    <div id="register">
-                        <hr>
-                        <h2>Customer registration</h2>
-                        <section class="post">
-                            <form method="post" action="SignUpServlet" class="alt">
-                                <div class="row uniform">                                        
-                                    <div class="6u 12u(xsmall)">
-                                        <label for="name">Name</label>
-                                        <input type="text" name="custName"/>
-                                    </div>
-                                    <div class="6u 12u(xsmall)">
-                                        <label for="telNo">Telephone Number</label>
-                                        <input type="text" name="custTel"/>
-                                    </div>
-                                    <div class="6u 12u(xsmall)">
-                                        <label for="email">Email</label>
-                                        <input type="text" name="custEmail"/>
-                                    </div>
-                                    <div class="6u 12u(xsmall)">
-                                        <label for="password">Password</label>
-                                        <input type="text" name="custPassword"/>
-                                    </div>
-                                    <div class="12u" >
-                                        <input type="submit" value="Register"/>
-                                    </div>
-                                </div>
-                            </form>
-
-
-                        </section>
-                    </div>
-
-                    <div id="login" style="display:none">
-                        <hr>
-                        <h2>Customer Login</h2>
-                        <section class="post">
-                            <form method="post" action="SignInCustomer" class="alt">
-                                <div class="row uniform">                                        
-                                    <div class="6u 12u(xsmall)">
-                                        <label for="username">Email</label>
-                                        <input type="text" name="custEmail"/>
-                                    </div>
-                                    <div class="6u 12u(xsmall)">
-                                        <label for="password">Password</label>
-                                        <input type="password" name="custPassword"/>
-                                    </div>
-                                    <div class="12u" >
-                                        <input type="submit" value="Login"/>
-                                    </div>
-                                </div>
-                            </form>
-                    </div>
+                    <a href="SignOutServlet" class="button">Log-Out</a>                   
                 </div>
-
             </div>
 
-        </div>                
+        </div> 
+
 
 
         <div id="wrapper">
 
             <!-- Header -->
             <header id="header">
-                <a href="customerPage.jsp" class="logo">Homestay</a>
+                <a href="managerPage.jsp" class="logo">Homestay</a>
             </header>
 
             <!-- Nav -->
             <nav id="nav">
-                <ul class="links">							
-                    <li class="active"><a href="homestayList.jsp">Homestay</a></li>
+                <ul class="links">
+                    <li class="active"><a href="customerPage.jsp">Profile</a></li>
+                    <li><a href="homestayList.jsp">Homestay List</a></li>
+                    <li><a href="custHistory.jsp" class="active">Booking History</a></li>
                 </ul>
                 <ul class="icons">							
-                    <div>
-                        <li>Currently booking as:<a id="myBtn">
-                            <%  Customer customer = (Customer) session.getAttribute("customer");
-                                if (customer == null) {
-                                    out.print("<li><a id=\"myBtn\" >Guest</a></li>");
-                                } else {
-                                    out.print("<li><a >" + customer.getName() + "</a></li>");
-                                }
-                                %></a>
-                        </li>                        
-                    </div>
+                    <li>Currently logged in as:</li>
+                    <li><a id="myBtn" ><%= customer.getName() %></a></li>
                 </ul>
             </nav>
 
             <!-- Main -->
-            <div id="main">
 
-                <!-- Post -->
-                <section class="post">
-                    <div class="row">
-                        <% int count = 1;
-                            while (rset.next()) {
+            <div id="main">                                     
 
-                        %>
+                <h2>My Profile</h2>
 
-                        <div class="6u 12u(small)">
+                <section class="alt">
+                    <form action="updateCustomer">
+                        <h3>Name</h3>
+                        <input type="text" name="name" id="input1" value="<%= customer.getName()%>" readonly/><br>
+                        <h3>Telephone Number</h3>
+                        <input type="text" name="telNo" id="input4" value="<%= customer.getTelNo()%>" readonly/><br>
 
-                            <a class="image fit" >
-                                <%                                    //out.print("<img src=\"image/" + rset.getString("houseID") + ".jpg\" alt=\"\" />");
-                                    out.print("<img src=\"image/" + rset.getString("houseID") + ".jpg\" alt=\"\" style=\"max-width:100%;max-height:230px;\" />");
-                                %>
-                            </a>
-                            <h3> <%= rset.getString("houseName")%> </h3>
-                            <p> <%= rset.getString("address")%> </p> 
-                            <p> <%= rset.getString("accomodation")%> </p> 
-                            <p> <%= rset.getString("rate")%> </p> 
-                            <div class="6u 12u(small)">
-                                <ul class="actions">
-                                    <% out.print("<li><a href='booking.jsp?housename=" + rset.getString("houseName") + "&rate=" + rset.getString("rate") + "' class=\"button\">BOOK</a></li>"); %>
-                                </ul>
-                            </div>
-                        </div>
-                        <% count++;
-                                }%>
-                    </div> 
+                        <h3>Email</h3>
+                        <input type="text" name="email" id="input5" value="<%= customer.getEmail()%>" readonly/><br>
+                        <input type="button" id="edit" value="Edit">
+                        <input type="button" id="cancel" style="display:none" value="Cancel">
+                        <input type="submit">
+                    </form>                            
                 </section>
 
             </div>
@@ -224,13 +177,26 @@
 
         </div>
     </body>
+    <script>
+        var btnEdit = document.getElementById("edit");
+        var btnCancel = document.getElementById("cancel");
+        var input1 = document.getElementById("input1");
+        var input4 = document.getElementById("input4");
+        var input5 = document.getElementById("input5");
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/skel.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+        btnEdit.onclick = function() {
+            btnEdit.style.display = "none";
+            btnCancel.style.display = "unset";
+            input4.removeAttribute("readonly");
+        }
+        
+        btnCancel.onclick = function() {
+            btnEdit.style.display = "unset";
+            btnCancel.style.display = "none";
+            input4.setAttribute("readonly", true);
+        }
+
+    </script>
     <script>
 // Get the modal
         var modal = document.getElementById("myModal");
@@ -247,33 +213,31 @@
 // When the user clicks the button, open the modal 
         btn.onclick = function () {
             modal.style.display = "unset";
-        };
+        }
 
-        btnRegis.onclick = function () {
-            btnRegis.disabled = true;
-            regis.style.display = "unset";
-            btnLogin.disabled = false;
-            login.style.display = "none";
-        };
-
-        btnLogin.onclick = function () {
-            btnRegis.disabled = false;
-            regis.style.display = "none";
-            btnLogin.disabled = true;
-            login.style.display = "unset";
-        };
 
 // When the user clicks on <span> (x), close the modal
         span.onclick = function () {
             modal.style.display = "none";
-        };
+        }
 
 // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
-        };
+        }
+    </script>
+    <script>
+        document.getElementsByClassName("close2")[0].onclick = function () {
+            document.getElementById("myModal2").style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == document.getElementById("myModal2")) {
+                document.getElementById("myModal2").style.display = "none";
+            }
+        }
     </script>
 </html>
 

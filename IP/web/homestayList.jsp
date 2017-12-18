@@ -153,7 +153,20 @@
 
             </div>
 
-        </div>                
+        </div>
+        <div id="myModal2" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content main">
+                <span class="close">&times;</span>
+
+                <div class="wrapper">                       
+                    <a href="SignOutServlet" class="button">Log-Out</a>
+                </div>
+
+            </div>
+
+        </div>
 
 
         <div id="wrapper">
@@ -169,8 +182,12 @@
                 <%  Customer customer = (Customer) session.getAttribute("customer");
                     Staff staff = (Staff) session.getAttribute("staff");
                     if (customer != null) {
+                        out.print("<ul class='links'>");
+                        out.print("<li><a href='customerPage.jsp'>Profile</a></li>");
+                        out.print("<li class='active'><a href='homestayList.jsp'>Homestay List</a></li>");
+                        out.print("<li> <a href='custHistory.jsp'>Booking History</a></li></ul>");               
                         out.print("<ul class='icons'>");
-                        out.print("Currently booking as:<li><a >" + customer.getName() + "</a></li></ul>");
+                        out.print("Currently logged in as :<li><a id=\"myBtn2\">" + customer.getName() + "</a></li></ul>");
                     } else if (staff != null) {
                         out.print("<ul class='links'>");
                         out.print("<li> <a href='ownerPage.jsp'>Profile</a></li>");
@@ -178,7 +195,7 @@
                         out.print("<li><a href='bookingLog.jsp'>Booking Log</a></li></ul>");
                         out.print("<ul class='icons'>");
                         out.print("Currently logged in as:<li><a >" + staff.getName() + "</a></li></ul>");
-                    } else {
+                    } else {                        
                         out.print("<ul class='icons'>");
                         out.print("Currently booking as:<li><a id=\"myBtn\" >Guest</a></li></ul>");
                     }
@@ -288,21 +305,31 @@
     <script>
 // Get the modal
         var modal = document.getElementById("myModal");
+        var modal2 = document.getElementById("myModal2");
         var regis = document.getElementById("register");
         var login = document.getElementById("login");
 // Get the button that opens the modal
         var btn = document.getElementById("myBtn");
+        var btn2 = document.getElementById("myBtn2");
         var btnRegis = document.getElementById("regisButton");
         var btnLogin = document.getElementById("loginButton");
 
 // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
+        var span2 = document.getElementsByClassName("close")[1];
 
 // When the user clicks the button, open the modal 
-        btn.onclick = function () {
+        if(btn != null){
+            btn.onclick = function () {
             modal.style.display = "unset";
         };
-
+        }
+        else if(btn2 != null){
+            btn2.onclick = function () {
+            modal2.style.display = "unset";
+        };
+        }
+        
         btnRegis.onclick = function () {
             btnRegis.disabled = true;
             regis.style.display = "unset";
@@ -321,11 +348,19 @@
         span.onclick = function () {
             modal.style.display = "none";
         };
+        span2.onclick = function () {
+            modal2.style.display = "none";
+        };
 
 // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
+            }
+        };
+        window.onclick = function (event) {
+            if (event.target == modal2) {
+                modal2.style.display = "none";
             }
         };
     </script>

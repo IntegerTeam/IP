@@ -175,20 +175,6 @@
             modal.style.display = "unset";
         }
 
-        btnRegis.onclick = function () {
-            btnRegis.disabled = true;
-            regis.style.display = "unset";
-            btnLogin.disabled = false;
-            login.style.display = "none";
-        }
-
-        btnLogin.onclick = function () {
-            btnRegis.disabled = false;
-            regis.style.display = "none";
-            btnLogin.disabled = true;
-            login.style.display = "unset";
-        }
-
 // When the user clicks on <span> (x), close the modal
         span.onclick = function () {
             modal.style.display = "none";
