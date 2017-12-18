@@ -328,7 +328,7 @@
 
             <!-- Header -->
             <header id="header">
-                <a href="managerPage.jsp" class="logo">Homestay</a>
+                <a href="workerPage.jsp" class="logo">Homestay</a>
             </header>
 
             <!-- Nav -->
