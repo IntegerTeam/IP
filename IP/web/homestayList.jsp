@@ -197,7 +197,7 @@
                         out.print("<li class='active'><a href='homestayList.jsp'>Homestay List</a></li>");
                         out.print("<li><a href='bookingLog.jsp'>Booking Log</a></li></ul>");
                         out.print("<ul class='icons'>");
-                        out.print("Currently logged in as:<li><a >" + staff.getName() + "</a></li></ul>");
+                        out.print("Currently logged in as:<li><a id=\"myBtn2\">" + staff.getName() + "</a></li></ul>");
                     } else {
                         out.print("<ul class='links'></ul>");
                         out.print("<ul class='icons'>");
