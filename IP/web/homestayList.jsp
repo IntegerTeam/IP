@@ -1,8 +1,7 @@
-<%-- 
-    Document   : contoh2
-    Created on : Nov 23, 2017, 11:23:10 AM
-    Author     : User
---%>
+/**
+*
+* @author ameeraakmalia
+*/
 <%@page import="conn.MySQL"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.sql.Connection"%>
@@ -16,7 +15,7 @@
 <!DOCTYPE html>
 <html> 
     <head>
-        <title> LIST OF HOMESTAYS </title>
+        <title> Homestay </title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -69,7 +68,6 @@
     <body>
         <%
             ResultSet rset = null;
-
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection conn = null;
@@ -77,7 +75,14 @@
                 //          if(!connection.isClosed())
                 //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
                 //          connection.close();
-                String sql = "Select houseID, houseName, address, accomodation, rate from homestay";
+                String sql = null;
+                String search = request.getParameter("search");
+                String area = request.getParameter("area");
+                if (search == null) {
+                    sql = "Select houseID, houseName, address, accomodation, rate from homestay";
+                } else if (search.equals("1")) {
+                    sql = "Select * from homestay where address like '%" + area + "%'";
+                }
                 Statement stmnt = null;
                 stmnt = conn.createStatement();
                 rset = stmnt.executeQuery(sql);
@@ -85,6 +90,8 @@
             } catch (Exception ex) {
                 out.println("Unable to connect to database.");
             }
+
+
         %>
         <div id="myModal" class="modal">
 
@@ -154,7 +161,6 @@
 
         </div>                
 
-
         <div id="wrapper">
 
             <!-- Header -->
@@ -196,11 +202,12 @@
                         if (staff.getLevel().equals("owner")) {
 
                 %>
-                <ul class="actions">
-
-                    <% out.print("<li><a href='createHomestay.jsp" + "' class=\"button\">ADD</a></li>"); %>
-
-                </ul>
+                
+                <form action="homestayList.jsp">
+                    <a href="createHomestay.jsp" class="button"> ADD</a> &nbsp &nbsp &nbsp
+                    <input type="hidden" name="search" value="1">
+                    <div class="6u 12u(small)"><input type="text" name="area" size="5" placeholder="Search"> </div>
+                </form>
 
                 <section class="post">
                     <div class="row">
@@ -237,9 +244,16 @@
                     }
                 } else {
                 %>
+                
+                <form action="homestayList.jsp">
+                    <input type="hidden" name="search" value="1">
+                    <div class="6u 12u(small)"><input type="text" name="area" size="5" placeholder="Search"> </div>
+                </form>
+
                 <!-- Post for Customer -->
                 <section class="post">
                     <div class="row">
+
                         <% int count = 1;
                             while (rset.next()) {
 
