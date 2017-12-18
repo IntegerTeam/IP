@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import conn.dbConnection;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -119,7 +120,16 @@ public class approveBooking extends HttpServlet {
             //    out.print(totalPay +"<br>");
             
             stmt2.executeUpdate();
+            HttpSession session = request.getSession(false);
             
+            session.setAttribute("homestay", homestay);
+            session.setAttribute("custEmail", custEmail);
+            session.setAttribute("sqlStartDate", sqlStartDate);
+            session.setAttribute("sqlEndDate", sqlEndDate);
+            session.setAttribute("totalPay", totalPay);
+            
+            
+            //save message in session
             response.sendRedirect(request.getContextPath() + "/BookingModule/Payment/receipt.jsp");
         } catch (Exception e) {
             e.printStackTrace();

@@ -76,7 +76,7 @@
                 //          if(!connection.isClosed())
                 //               out.println("Successfully connected to " + "MySQL server using TCP/IP...");
                 //          connection.close();
-                String sql = "Select * from booking GROUP BY checkInDate";
+                String sql = "Select * from booking where month(checkOutDate)=12";
                 Statement stmnt = null;
                 stmnt = conn.createStatement();
                 rset = stmnt.executeQuery(sql);
@@ -103,26 +103,53 @@
 
             <!-- Header -->
             <header id="header">
-                <a href="ownerPage.jsp" class="logo">Homestay</a>
+                <a href="#" class="logo">Homestay</a>
             </header>
 
             <!-- Nav -->
             <nav id="nav">
-                <ul class="links">
-                    <li><a href="ownerPage.jsp">Profile</a></li>
-                    <li><a href="homestayList.jsp">Homestay List</a></li>
-                    <li><a href="bookingLog.jsp" class="active">Booking Log</a></li>
-                </ul>
-                <ul class="icons">							
-                    <ul class="icons">
-                    <% Staff staff = (Staff) session.getAttribute("staff"); %>
-                   <li>Currently logged in as:  <a id="myBtn" ><%=staff.getName()%></a></li>
-                </ul>
-                </ul>
+                <%  Staff staff = (Staff) session.getAttribute("staff");
+                    if (staff.getLevel().equals("owner")) {
+                        out.print("<ul class='links'>");
+                        out.print("<li> <a href='ownerPage.jsp'>Profile</a></li>");
+                        out.print("<li><a href='homestayList.jsp'>Homestay List</a></li>");
+                        out.print("<li class='active'><a href='bookingLog.jsp'>Booking Log</a></li></ul>");
+                        out.print("<ul class='icons'>");
+                        out.print("Currently logged in as:<li><a id='myBtn'>" + staff.getName() + "</a></li></ul>");
+                    } else {
+                        out.print("<ul class='links'>");
+                        out.print("<li> <a href='managerPage.jsp'>Profile</a></li>");
+                        out.print("<li><a href='scheduleM.jsp'>Schedule</a></li>");
+                        out.print("<li class='active'><a href='bookingLog.jsp'>Booking Log</a></li></ul>");
+                        out.print("<ul class='icons'>");
+                        out.print("Currently logged in as:<li><a id='myBtn'>" + staff.getName() + "</a></li></ul>");
+                    }
+                %>
             </nav>
 
             <!-- Main -->
             <div id="main">
+                
+                <div class="12u$">
+                    <div class="select-wrapper">
+			<select name="demo-category" id="demo-category">
+                            <option value="">- Search by Month -</option>
+                            <option value="1">January</option>
+                            <option value="1">February</option>
+                            <option value="1">March</option>
+                            <option value="1">April</option>
+                            <option value="1">May</option>
+                            <option value="1">June</option>
+                            <option value="1">July</option>
+                            <option value="1">August</option>
+                            <option value="1">September</option>
+                            <option value="1">October</option>
+                            <option value="1">November</option>
+                            <option value="1">December</option>
+                        </select>
+                    </div>
+                </div>
+                
                 <table class="alt">
                     <thead>
 			<tr>
@@ -187,20 +214,6 @@
 // When the user clicks the button, open the modal 
         btn.onclick = function () {
             modal.style.display = "unset";
-        }
-
-        btnRegis.onclick = function () {
-            btnRegis.disabled = true;
-            regis.style.display = "unset";
-            btnLogin.disabled = false;
-            login.style.display = "none";
-        }
-
-        btnLogin.onclick = function () {
-            btnRegis.disabled = false;
-            regis.style.display = "none";
-            btnLogin.disabled = true;
-            login.style.display = "unset";
         }
 
 // When the user clicks on <span> (x), close the modal
