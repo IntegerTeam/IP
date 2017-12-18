@@ -74,7 +74,7 @@
 
             <!-- Header -->
             <header id="header">
-                <a href="../index.html" class="logo">Homestay</a>
+                <a href="../../index.html" class="logo">Homestay</a>
             </header>
 
             <!-- Nav -->
