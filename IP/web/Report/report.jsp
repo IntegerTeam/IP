@@ -1,9 +1,10 @@
 <%-- 
-    Document   : receipt
-    Created on : Dec 13, 2017, 2:46:56 PM
+    Document   : report
+    Created on : Dec 17, 2017, 9:31:00 PM
     Author     : jhz
 --%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="conn.MySQL"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.sql.Connection"%>
@@ -13,7 +14,6 @@
 <%@page import="beans.*"%>
 
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html> 
     <head>
@@ -23,9 +23,9 @@
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-        <link href="../../assets/css/main.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/main.css" rel="stylesheet" type="text/css"/>
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-        <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+        <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
 
         <style>
             /* The Modal (background) */
@@ -66,6 +66,7 @@
                 text-decoration: none;
                 cursor: pointer;
             }
+            
         </style>
     </head>
     <body>
@@ -80,7 +81,7 @@
             <!-- Nav -->
             <nav id="nav">
                 <ul class="links">							
-                    <li class="active"><a href="houseList.html">Homestay</a></li>	
+                    <li class="active"><a href="../index.html">Homestay</a></li>	
                 </ul>
                 <ul class="icons">							
                     <div>
@@ -91,7 +92,7 @@
 
             <!-- Main -->
             <div id="main">
-                <iframe  src="receiptPage.jsp" name="targetframe" allowTransparency="true" scrolling="yes" frameborder="0" width="100%" style="height:50em"></iframe>
+                <iframe  src="reportPage.jsp" name="targetframe" allowTransparency="true" scrolling="no" frameborder="0" width="100%" style="height:50em"></iframe>
 
             </div>
 
