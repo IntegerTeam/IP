@@ -159,25 +159,6 @@
                             </select>
                         </div>
                         </div>
-                        
-                <div class="12u">
-                    <div class="select-wrapper">
-			<select name="demo-category" id="demo-category">
-                            <option value="">- Search by Month -</option>
-                            <option value="1">January</option>
-                            <option value="1">February</option>
-                            <option value="1">March</option>
-                            <option value="1">April</option>
-                            <option value="1">May</option>
-                            <option value="1">June</option>
-                            <option value="1">July</option>
-                            <option value="1">August</option>
-                            <option value="1">September</option>
-                            <option value="1">October</option>
-                            <option value="1">November</option>
-                            <option value="1">December</option>
-                        </select>
-
                     </div>
                     <input type="submit" value="SEARCH"/>
                 </form>
@@ -186,6 +167,7 @@
                     <thead>
 			<tr>
 				<th>Booking ID</th>
+                                <th>House ID</th>
 				<th>Customer Email</th>
                                 <th>Check-In Date</th>
                                 <th>Check-Out Date</th>
@@ -209,6 +191,7 @@
                     </tbody>
                 </table>                   
             </div>
+        </div>
 
             <!-- Copyright -->
             <div id="copyright">

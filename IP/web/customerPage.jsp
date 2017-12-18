@@ -161,7 +161,7 @@
                         <input type="text" name="telNo" id="input4" value="<%= customer.getTelNo()%>" readonly/><br>
 
                         <h3>Email</h3>
-                        <input type="text" name="email" id="input5" value="<%= customer.getEmail()%>" readonly/><br>
+                        <input type="text" name="email" id="input5" value="<%= customer.getEmail()%>" readonly/><br><br>
                         <input type="button" id="edit" value="Edit">
                         <input type="button" id="cancel" style="display:none" value="Cancel">
                         <input type="submit">
