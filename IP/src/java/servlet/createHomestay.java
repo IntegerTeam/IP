@@ -62,7 +62,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
             PrintWriter writer = response.getWriter();
             try {
         out = new FileOutputStream(new File(path + File.separator
-                + fileName));
+                + housename +".jpg"));
         
         filecontent = filePart.getInputStream();
         
@@ -73,7 +73,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         while ((read = filecontent.read(bytes)) != -1) {
             out.write(bytes, 0, read);
            
-            photo=path+"/"+fileName;
+            photo=path+"/"+housename +".jpg";
             
             
         }
