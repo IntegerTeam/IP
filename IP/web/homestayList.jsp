@@ -1,7 +1,4 @@
-/**
-*
-* @author ameeraakmalia
-*/
+
 <%@page import="conn.MySQL"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.sql.Connection"%>
@@ -67,7 +64,7 @@
     </head>
     <body>
         <%
-            
+
             ResultSet rset = null;
             try {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -191,7 +188,7 @@
                         out.print("<ul class='links'>");
                         out.print("<li><a href='customerPage.jsp'>Profile</a></li>");
                         out.print("<li class='active'><a href='homestayList.jsp'>Homestay List</a></li>");
-                        out.print("<li> <a href='custHistory.jsp'>Booking History</a></li></ul>");               
+                        out.print("<li> <a href='custHistory.jsp'>Booking History</a></li></ul>");
                         out.print("<ul class='icons'>");
                         out.print("Currently logged in as :<li><a id=\"myBtn2\">" + customer.getName() + "</a></li></ul>");
                     } else if (staff != null) {
@@ -200,8 +197,8 @@
                         out.print("<li class='active'><a href='homestayList.jsp'>Homestay List</a></li>");
                         out.print("<li><a href='bookingLog.jsp'>Booking Log</a></li></ul>");
                         out.print("<ul class='icons'>");
-                        out.print("Currently logged in as:<li><a >" + staff.getName() + "</a></li></ul>");
-                    } else {     
+                        out.print("Currently logged in as:<li><a id=\"myBtn2\">" + staff.getName() + "</a></li></ul>");
+                    } else {
                         out.print("<ul class='links'></ul>");
                         out.print("<ul class='icons'>");
                         out.print("Currently booking as:<li><a id=\"myBtn\" >Guest</a></li></ul>");
@@ -219,7 +216,7 @@
                         if (staff.getLevel().equals("owner")) {
 
                 %>
-                
+
                 <form action="homestayList.jsp">
                     <a href="createHomestay.jsp" class="button"> ADD</a> &nbsp &nbsp &nbsp
                     <input type="hidden" name="search" value="1">
@@ -238,7 +235,7 @@
 
                             <a class="image fit" >
                                 <%                                    //out.print("<img src=\"image/" + rset.getString("houseID") + ".jpg\" alt=\"\" />");
-                                    out.print("<img src=\"image/" + rset.getString("houseID") + ".jpg\" alt=\"\" style=\"max-width:100%;max-height:230px;\" />");
+                                    out.print("<img src=\"image/" + rset.getString("housename") + ".jpg\" alt=\"\" style=\"max-width:100%;max-height:230px;\" />");
                                 %>
                             </a>
                             <h3> <%= rset.getString("houseName")%> </h3>
@@ -253,7 +250,11 @@
 
                         </div>
                         <% count++;
-                            }%>
+                            }
+                            if (count == 1) {
+                                out.print("<b>There is no homestay in that area</b>");
+                            }
+                        %>
                     </div> 
                 </section>
 
@@ -261,7 +262,7 @@
                     }
                 } else {
                 %>
-                
+
                 <form action="homestayList.jsp">
                     <input type="hidden" name="search" value="1">
                     <div class="6u 12u(small)"><input type="text" name="area" size="5" placeholder="Search"> </div>
@@ -280,7 +281,7 @@
 
                             <a class="image fit" >
                                 <%                                    //out.print("<img src=\"image/" + rset.getString("houseID") + ".jpg\" alt=\"\" />");
-                                    out.print("<img src=\"image/" + rset.getString("houseID") + ".jpg\" alt=\"\" style=\"max-width:100%;max-height:230px;\" />");
+                                    out.print("<img src=\"image/" + rset.getString("housename") + ".jpg\" alt=\"\" style=\"max-width:100%;max-height:230px;\" />");
                                 %>
                             </a>
                             <h3> <%= rset.getString("houseName")%> </h3>
@@ -294,11 +295,16 @@
                             </div>
                         </div>
                         <% count++;
-                            }%>
+                            }
+                            if (count == 1) {
+                                out.print("<b>There is no homestay in that area</b>");
+                            }
+                        %>
                     </div> 
                 </section>
                 <%
                     }
+
                 %>
 
             </div>
@@ -334,17 +340,16 @@
         var span2 = document.getElementsByClassName("close")[1];
 
 // When the user clicks the button, open the modal 
-        if(btn != null){
+        if (btn != null) {
             btn.onclick = function () {
-            modal.style.display = "unset";
-        };
-        }
-        else if(btn2 != null){
+                modal.style.display = "unset";
+            };
+        } else if (btn2 != null) {
             btn2.onclick = function () {
-            modal2.style.display = "unset";
-        };
+                modal2.style.display = "unset";
+            };
         }
-        
+
         btnRegis.onclick = function () {
             btnRegis.disabled = true;
             regis.style.display = "unset";
