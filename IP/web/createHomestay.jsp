@@ -1,4 +1,4 @@
-<%@page import="beans.Staff"%>
+ <%@page import="beans.Staff"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -34,9 +34,10 @@ and open the template in the editor.
                     <li> <a href="ownerPage.jsp"> Profile</a></li>
                     <li class="active"><a href="homestayList.jsp">Homestay List</a></li>
                     <li><a href="bookingLog.jsp">Booking Log</a></li>
+                    <li><a href="Report/report.jsp">Report</a></li>
                 </ul>
                 <ul class="icons">
-                    Currently logged in as:<li><a <%=staff.getName()%></a></li>
+                    Currently log in as: <li><a><%=staff.getName()%></a></li>
                 </ul>
             </nav>
 

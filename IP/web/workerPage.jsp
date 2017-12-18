@@ -122,13 +122,12 @@
             <!-- Nav -->
             <nav id="nav">
                 <ul class="links">
-                    <li class="active"><a href="staffPage.jsp">Profile</a></li>
+                    <li class="active"><a href="workerPage.jsp">Profile</a></li>
                     <li><a href="scheduleW.jsp">Schedule</a></li>
-                    <li><a href="reportDamage.jsp">Report Damage</a></li>
                 </ul>
                 <ul class="icons">							
-                    <li>Currently log-in as: </li>
-                    <li><a id="myBtn" >Staff</a></li>
+                    <li>Currently log in as: </li>
+                    <li><a id="myBtn" >Worker</a></li>
                 </ul>
             </nav>
 

@@ -125,9 +125,11 @@
                     <li class="active"><a href="ownerPage.jsp">Profile</a></li>
                     <li><a href="homestayList.jsp">Homestay List</a></li>
                     <li><a href="bookingLog.jsp">Booking Log</a></li>
+                    <li><a href="Report/report.jsp">Report</a></li>
+                           
                 </ul>
                 <ul class="icons">
-                    <li>Currently logged in as:  <a id="myBtn" ><%=staff.getName()%></a></li>
+                    <li>Currently log in as: <a id="myBtn" ><%=staff.getName()%></a></li>
                 </ul>
             </nav>
 

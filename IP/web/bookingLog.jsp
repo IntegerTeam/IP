@@ -120,16 +120,17 @@
                         out.print("<ul class='links'>");
                         out.print("<li> <a href='ownerPage.jsp'>Profile</a></li>");
                         out.print("<li><a href='homestayList.jsp'>Homestay List</a></li>");
-                        out.print("<li class='active'><a href='bookingLog.jsp'>Booking Log</a></li></ul>");
+                        out.print("<li class='active'><a href='bookingLog.jsp'>Booking Log</a></li>");
+                        out.print("<li><a href='Report/report.jsp'>Report</a></li></ul>");
                         out.print("<ul class='icons'>");
-                        out.print("Currently logged in as:<li><a id='myBtn'>" + staff.getName() + "</a></li></ul>");
+                        out.print("Currently log in as: <li><a id='myBtn'>" + staff.getName() + "</a></li></ul>");
                     } else {
                         out.print("<ul class='links'>");
                         out.print("<li> <a href='managerPage.jsp'>Profile</a></li>");
                         out.print("<li><a href='scheduleM.jsp'>Schedule</a></li>");
                         out.print("<li class='active'><a href='bookingLog.jsp'>Booking Log</a></li></ul>");
                         out.print("<ul class='icons'>");
-                        out.print("Currently logged in as:<li><a id='myBtn'>" + staff.getName() + "</a></li></ul>");
+                        out.print("Currently log in as: <li><a id='myBtn'>" + staff.getName() + "</a></li></ul>");
                     }
                 %>
             </nav>

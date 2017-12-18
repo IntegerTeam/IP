@@ -273,19 +273,6 @@
         </style>
     </head>
     <body>
-        <div id="myModal" class="modal">
-
-            <!-- Modal content -->
-            <div class="modal-content main">
-                <span class="close">&times;</span>
-
-                <div class="wrapper">                       
-                    <button id="regisButton" disabled>Profile</button>
-                    <button id="loginButton">Edit Profile</button>                    
-                </div>
-            </div>
-
-        </div> 
         
         <div id="myModal2" class="modal2">
 
@@ -322,7 +309,18 @@
             </div>
 
         </div>
+ <div id="myModal" class="modal">
 
+            <!-- Modal content -->
+            <div class="modal-content main">
+                <span class="close">&times;</span>
+
+                <div class="wrapper">                       
+                    <a href="SignOutServlet" class="button">Log-Out</a>                   
+                </div>
+            </div>
+
+        </div> 
 
         <div id="wrapper">
 
@@ -336,11 +334,10 @@
                 <ul class="links">
                     <li><a href="workerPage.jsp">Profile</a></li>
                     <li class="active"><a href="scheduleW.jsp">Schedule</a></li>
-                    <li><a href="reportDamage.jsp">Report Damage</a></li>
                 </ul>
                 <ul class="icons">							
-                    <li>Currently log-in as: </li>
-                    <li><a id="myBtn" >Manager</a></li>
+                    <li>Currently log in as: </li>
+                    <li><a id="myBtn" >Worker</a></li>
                 </ul>
             </nav>
 

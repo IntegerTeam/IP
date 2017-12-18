@@ -88,11 +88,11 @@
                         out.print("<li class='active'><a href='../../homestayList.jsp'>Homestay List</a></li>");
                         out.print("<li> <a href='../../custHistory.jsp'>Booking History</a></li></ul>");
                         out.print("<ul class='icons'>");
-                        out.print("Currently logged in as :<li><a id=\"myBtn2\">" + customer.getName() + "</a></li></ul>");
+                        out.print("Currently log in as: <li><a id=\"myBtn2\">" + customer.getName() + "</a></li></ul>");
                     } else {
                         out.print("<ul class='links'></ul>");
                         out.print("<ul class='icons'>");
-                        out.print("Currently booking as:<li><a id=\"myBtn\" >Guest</a></li></ul>");
+                        out.print("Currently booking as: <li><a id=\"myBtn\" >Guest</a></li></ul>");
                     }
                 %>
 

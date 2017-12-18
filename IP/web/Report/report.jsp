@@ -70,7 +70,18 @@
         </style>
     </head>
     <body>
-                       
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content main">
+                <span class="close">&times;</span>
+
+                <div class="wrapper">                       
+                    <a href="SignOutServlet" class="button">Log-Out</a>                   
+                </div>
+            </div>
+
+        </div>                 
         <div id="wrapper">
 
             <!-- Header -->
@@ -80,13 +91,15 @@
 
             <!-- Nav -->
             <nav id="nav">
+              <%  Staff staff = (Staff) session.getAttribute("staff"); %>
                 <ul class="links">							
-                    <li class="active"><a href="../index.html">Homestay</a></li>	
+                    <li><a href="../ownerPage.jsp">Profile</a></li>
+                    <li><a href="../homestayList.jsp">Homestay List</a></li>
+                    <li><a href="../bookingLog.jsp">Booking Log</a></li>
+                    <li class="active"><a href="Report/report.jsp">Report</a></li>	
                 </ul>
-                <ul class="icons">							
-                    <div>
-                                         
-                    </div>
+                <ul class="icons">
+                    <li>Currently log in as: <a id="myBtn" ><%=staff.getName()%></a></li>
                 </ul>
             </nav>
 

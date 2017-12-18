@@ -117,7 +117,7 @@
                 </ul>
                 <ul class="icons">							
                     <ul class="icons">                    
-                   <li>Currently logged in as:  <a id="myBtn" ><%=customer.getName()%></a></li>
+                   <li>Currently log in as: <a id="myBtn" ><%=customer.getName()%></a></li>
                 </ul>
                 </ul>
             </nav>

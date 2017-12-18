@@ -329,7 +329,7 @@
                     <li class="active"><a href="scheduleM.jsp">Schedule</a></li>
                 </ul>
                 <ul class="icons">							
-                    <li>Currently log-in as: </li>
+                    <li>Currently log in as: </li>
                     <% staff = (Staff) session.getAttribute("staff"); %>
                     <li><a id="myBtn" ><%= staff.getName() %></a></li>
                 </ul>

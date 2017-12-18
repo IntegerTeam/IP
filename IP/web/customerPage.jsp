@@ -142,7 +142,7 @@
                     <li><a href="custHistory.jsp" class="active">Booking History</a></li>
                 </ul>
                 <ul class="icons">							
-                    <li>Currently logged in as:</li>
+                    <li>Currently log in as: </li>
                     <li><a id="myBtn" ><%= customer.getName() %></a></li>
                 </ul>
             </nav>

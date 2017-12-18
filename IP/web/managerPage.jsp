@@ -146,7 +146,7 @@
                     <li><a href="scheduleM.jsp">Schedule</a></li>	
                 </ul>
                 <ul class="icons">							
-                    <li>Currently log-in as: </li>
+                    <li>Currently log in as: </li>
                     <li><a id="myBtn" ><%= staff.getName() %></a></li>
                 </ul>
             </nav>

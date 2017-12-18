@@ -35,9 +35,10 @@ and open the template in the editor.
                     <li><a href='ownerPage.jsp'>Profile</a></li>
                     <li class="active"><a href="homestayList.jsp">Homestay List</a></li>
                     <li> <a href="bookingLog.jsp">Booking Log</a></li>
+                    <li><a href="Report/report.jsp">Report</a></li>
                 </ul>
                 <ul class="icons">	
-                    Currently login as: <li><a><%=staff.getName()%></a></li>
+                    Currently log in as: <li><a><%=staff.getName()%></a></li>
                 </ul>
             </nav>
 
