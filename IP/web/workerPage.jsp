@@ -92,8 +92,7 @@
                 <span class="close">&times;</span>
 
                 <div class="wrapper">                       
-                    <button id="regisButton" disabled>Profile</button>
-                    <button id="loginButton">Edit Profile</button>
+                    <a href="SignOutServlet" class="button">Log-Out</a>                   
                 </div>
             </div>
 
@@ -111,8 +110,8 @@
             <nav id="nav">
                 <ul class="links">
                     <li class="active"><a href="staffPage.jsp">Profile</a></li>
-                    <li><a href="#">Schedule</a></li>
-                    <li><a href="#">Report Damage</a></li>
+                    <li><a href="scheduleW.jsp">Schedule</a></li>
+                    <li><a href="reportDamage.jsp">Report Damage</a></li>
                 </ul>
                 <ul class="icons">							
                     <li>Currently log-in as: </li>

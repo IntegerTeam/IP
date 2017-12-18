@@ -68,6 +68,7 @@
     </head>
     <body>
         <%
+            
             ResultSet rset = null;
 
             try {
@@ -159,31 +160,30 @@
 
             <!-- Header -->
             <header id="header">
-                <a href="index.html" class="logo">Homestay</a>
+                <a class="logo">Homestay</a>
             </header>
 
             <!-- Nav -->
             <nav id="nav">
-                <ul class="links">							
-                    <li class="active"><a href="houseList.html">Homestay</a></li>	
-                </ul>
-                <ul class="icons">							
-                    <div>
-                        <li>
-                            <%  Customer customer = (Customer) session.getAttribute("customer");
-                                Staff staff = (Staff) session.getAttribute("staff");
-                                if (customer != null) {
-                                    out.print("Currently booking as:<li><a >" + customer.getName() + "</a></li>");
 
-                                } else if (staff != null) {
-                                    out.print("Currently logged in as:<li><a >" + staff.getName() + "</a></li>");
-                                } else {
-                                    out.print("Currently booking as:<li><a id=\"myBtn\" >Guest</a></li>");
-                                }
-                            %>
-                        </li>                        
-                    </div>
-                </ul>
+                <%  Customer customer = (Customer) session.getAttribute("customer");
+                    Staff staff = (Staff) session.getAttribute("staff");
+                    if (customer != null) {
+                        out.print("<ul class='icons'>");
+                        out.print("Currently booking as:<li><a >" + customer.getName() + "</a></li></ul>");
+                    } else if (staff != null) {
+                        out.print("<ul class='links'>");
+                        out.print("<li> <a href='ownerPage.jsp'>Profile</a></li>");
+                        out.print("<li class='active'><a href='homestayList.jsp'>Homestay List</a></li>");
+                        out.print("<li><a href='bookingLog.jsp'>Booking Log</a></li></ul>");
+                        out.print("<ul class='icons'>");
+                        out.print("Currently logged in as:<li><a >" + staff.getName() + "</a></li></ul>");
+                    } else {
+                        out.print("<ul class='icons'>");
+                        out.print("Currently booking as:<li><a id=\"myBtn\" >Guest</a></li></ul>");
+                    }
+                %>
+
             </nav>
 
             <!-- Main -->
@@ -196,14 +196,14 @@
 
                 %>
                 <ul class="actions">
-                    
+
                     <% out.print("<li><a href='createHomestay.jsp" + "' class=\"button\">ADD</a></li>"); %>
-                  
-		</ul>
-      
+
+                </ul>
+
                 <section class="post">
                     <div class="row">
-                        
+
                         <% int count = 1;
                             while (rset.next()) {
 
@@ -220,12 +220,12 @@
                             <p> <%= rset.getString("address")%> </p> 
                             <p> <%= rset.getString("accomodation")%> </p> 
                             <p> <%= rset.getString("rate")%> </p> 
-                            
-                                <ul class="actions">
-                                    <li><% out.print("<li><a href='editHomestay.jsp?houseid=" + rset.getString("houseID") + "' class=\"button\">EDIT</a></li>"); %> </li> 
-                                    <li><% out.print("<li><a href='deleteHomestay?houseid=" + rset.getString("houseID") + "' class=\"button\">DELETE</a></li>"); %> </li>
-                                </ul>
-                            
+
+                            <ul class="actions">
+                                <li><% out.print("<li><a href='editHomestay.jsp?houseid=" + rset.getString("houseID") + "' class=\"button\">EDIT</a></li>"); %> </li> 
+                                <li><% out.print("<li><a href='deleteHomestay?houseid=" + rset.getString("houseID") + "' class=\"button\">DELETE</a></li>"); %> </li>
+                            </ul>
+
                         </div>
                         <% count++;
                             }%>
@@ -233,8 +233,8 @@
                 </section>
 
                 <%
-                } }
-                    else { 
+                    }
+                } else {
                 %>
                 <!-- Post for Customer -->
                 <section class="post">
@@ -266,7 +266,7 @@
                     </div> 
                 </section>
                 <%
-                    } 
+                    }
                 %>
 
             </div>

@@ -9,22 +9,20 @@ import conn.dbConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.PreparedStatement;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import beans.*;
 
 /**
  *
- * @author User
+ * @author Ikmal
  */
-public class deleteHomestay extends HttpServlet {
+public class updateStaff extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,12 +34,10 @@ public class deleteHomestay extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-
-            String houseid = request.getParameter("houseid");
-
+        PrintWriter out = response.getWriter();
+        try {
             Connection conn = null;
             try {
                 conn = dbConnection.getConnection();
@@ -49,40 +45,35 @@ public class deleteHomestay extends HttpServlet {
                 out.println("Unable to connect to database<br>");
             }
 
-            String sql = "Delete From homestay where houseid='" + houseid + "'";
-            Statement stmt = conn.createStatement();
-            stmt.executeUpdate(sql);
+            PreparedStatement stmt = null;
+            String sql = "Update staff set address=?, telNo=?, email=? where username=?";
 
-            String sql2 = "Select * from homestay";
-            Statement stmt2 = conn.createStatement();
-            ResultSet rset = stmt.executeQuery(sql2);
-            int i = 1;
-            ArrayList<String> sqlarray = new ArrayList<String>();
-            while (rset.next()) {
-                System.out.println(i);
-                String house = "";
-                if (i < 10) {
-                    house = "H000" + String.valueOf(i);
-                } else if (i < 100) {
-                    house = "H00" + String.valueOf(i);
-                } else if (i < 1000) {
-                    house = "H0" + String.valueOf(i);
-                } else if (i < 10000) {
-                    house = "H" + String.valueOf(i);
-                }
-                String sql3 = "Update homestay set houseid='" + house + "' where houseid='" + rset.getString(1) + "';";
-                sqlarray.add(sql3);
-                i++;
-                //stmt.executeUpdate(sql3);
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, request.getParameter("address"));
+            stmt.setString(2, request.getParameter("telNo"));
+            stmt.setString(3, request.getParameter("email"));
+            stmt.setString(4, request.getParameter("username"));
+
+//            out.print(request.getParameter("address") +"\n" +
+//                    request.getParameter("telNo") +"\n" +
+//                    request.getParameter("email") +"\n" +
+//                    request.getParameter("username") +"\n");
+            stmt.executeUpdate();
+
+            HttpSession session = request.getSession();
+            Staff staff = (Staff) session.getAttribute("staff");
+            if (staff.getLevel().equals("owner")) {
+                response.sendRedirect("ownerPage.jsp");
+            } else if (staff.getLevel().equals("manager")) {
+                response.sendRedirect("managerPage.jsp");
+            } else if (staff.getLevel().equals("worker")) {
+                response.sendRedirect("workerPage.jsp");
             }
 
-            for (String s : sqlarray) {
-                stmt.executeUpdate(s);
-            }
-
-            response.sendRedirect("homestayList.jsp");
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -97,11 +88,7 @@ public class deleteHomestay extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(deleteHomestay.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -115,11 +102,7 @@ public class deleteHomestay extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(deleteHomestay.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -131,4 +114,5 @@ public class deleteHomestay extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
