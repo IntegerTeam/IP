@@ -130,7 +130,7 @@
             <!-- Main -->
             <div id="main">
                 
-                <div class="12u$">
+                <div class="12u">
                     <div class="select-wrapper">
 			<select name="demo-category" id="demo-category">
                             <option value="">- Search by Month -</option>
