@@ -51,7 +51,10 @@ and open the template in the editor.
                     <form method="post" action="createHomestay" class="alt">
                         <div class="row uniform">
                           
-                            
+                            <div class="12u">
+                                <label for="upload">Upload</label>
+                                <input type="file" name="filecover" value="Upload"/>
+                            </div>
                             
                             <div class="6u 12u(xsmall)">
                                 <label for="homestay">House Name</label>
