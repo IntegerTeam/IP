@@ -178,7 +178,7 @@
                     c.setDescription(rs.getString("houseName"));
                     c.setStart(String.valueOf(rs.getDate("start")));
                     c.setEnd(String.valueOf(rs.getDate("end")));
-
+                    c.setType("schedule");
                     if(staff != null){
                         if (staff.getUsername().equals(rs.getString("username"))) {
                         c.setColor("green");
@@ -202,7 +202,8 @@
                     d.setTitle(rs.getString("houseName"));
                     d.setStart(String.valueOf(rs.getDate("checkInDate")));
                     d.setEnd(String.valueOf(rs.getDate("checkOutDate")));
-                    d.setColor("lightblue");
+                    d.setColor("blue");
+                    d.setType("booking");
                     sch.add(d);
                 }
                 
@@ -239,11 +240,12 @@
                         }
                     },
                     eventClick: function (calEvent, jsEvent, view) {
-                       if(calEvent.type == 'schedule'){
+                        if(calEvent.type == 'schedule'){
                             alert('Worker: ' + calEvent.title + "\n" +
                                 'Homestay: ' + calEvent.description);
                         }
                     },
+                    eventStartEditable: false,
                     editable: true,
                     eventLimit: true, // allow "more" link when too many events
                     events: JSON.parse(rs)

@@ -68,6 +68,7 @@
     </head>
     <body>
         <%
+            
             ResultSet rset = null;
 
             try {
