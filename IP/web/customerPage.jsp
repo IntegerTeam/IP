@@ -19,7 +19,7 @@
 <!DOCTYPE html>
 <html> 
     <head>
-        <title> LIST OF HOMESTAYS </title>
+        <title> Homestay</title>
 
         <script src='lib/jquery.min.js'></script>
         <script src='lib/moment.min.js'></script>

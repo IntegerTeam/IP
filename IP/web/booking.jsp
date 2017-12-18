@@ -15,7 +15,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Generic Page - Massively by HTML5 UP</title>
+        <title>Homestay</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <script src='lib/jquery.min.js'></script>
