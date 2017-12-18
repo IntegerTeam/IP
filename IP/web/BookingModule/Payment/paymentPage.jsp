@@ -78,16 +78,8 @@
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="form-group">
-                                            <label for="contactP">Contact Person</label>
-                                            <input type="text" class="form-control" name="contactP" />
-                                        </div>
-                                    </div>                        
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="form-group">
                                             <label for="contactN">Contact Number</label>
-                                            <input type="text" class="form-control" id="contactN" name="contactN" />
+                                            <input type="text" class="form-control" id="contactN" name="contactN" readonly />
                                         </div>
                                     </div>                        
                                 </div>
@@ -95,7 +87,7 @@
                                     <div class="col-xs-12">
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            <input type="text" id="email" class="form-control" name="email" />
+                                            <input type="text" id="email" class="form-control" name="email" readonly/>
                                         </div>
                                     </div>                        
                                 </div>

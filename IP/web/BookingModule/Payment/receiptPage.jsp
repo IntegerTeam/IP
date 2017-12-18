@@ -48,7 +48,7 @@
                                 <br>
                                 <% out.println(session.getAttribute("custEmail")); %>
                                 <br>
-                                <abbr title="Phone">P:</abbr> <% out.println(session.getAttribute("phone")); %>
+                                Phone: <% out.println(session.getAttribute("phone")); %>
                             </address>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 text-right">
@@ -104,9 +104,9 @@
                                 </tr>
                             </tbody>
                         </table>
-<!--                        <button type="button" class="btn btn-success btn-lg btn-block">
-                            Pay Now&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right"></span>
-                        </button>-->
+                        <button type="button" class="btn btn-success btn-lg btn-block" onClick="window.print()">
+                            Print&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right"></span>
+                        </button>
                     </div>
                 </div>
             </div>
