@@ -318,7 +318,7 @@ and open the template in the editor.
                 var pay = document.getElementById("pay").value;
                 var homestay = "<%=housename%>";
                 var contact = document.getElementById("phone").value;
-                var request = 'houseName='+homestay+'&checkin='+start+'&checkout='+end+'&email='+email+'&totalPay='+pay;
+                var request = 'houseName='+homestay+'&checkin='+start+'&checkout='+end+'&email='+email+'&totalPay='+pay+'&phone='+contact;
                 document.location.href = '${pageContext.request.contextPath}/approveBooking?'+request;
             }
             

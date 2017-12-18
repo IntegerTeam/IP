@@ -92,8 +92,8 @@
 
             <!-- Main -->
             <div id="main">
-                <iframe  src="reportPage.jsp" name="targetframe" allowTransparency="true" scrolling="no" frameborder="0" width="100%" style="height:50em"></iframe>
-
+                <iframe  src="reportPage.jsp" name="targetframe" allowTransparency="true" scrolling="auto" frameborder="0" width="100%" style="height:30em"></iframe>
+   
             </div>
 
             <!-- Copyright -->
