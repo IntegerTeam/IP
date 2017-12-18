@@ -242,7 +242,7 @@
                             <h3> <%= rset.getString("houseName")%> </h3>
                             <p> <%= rset.getString("address")%> </p> 
                             <p> <%= rset.getString("accomodation")%> </p> 
-                            <p> <%= rset.getString("rate")%> </p> 
+                            <p> RM <%= rset.getString("rate")%> /night </p> 
 
                             <ul class="actions">
                                 <li><% out.print("<li><a href='editHomestay.jsp?houseid=" + rset.getString("houseID") + "' class=\"button\">EDIT</a></li>"); %> </li> 
@@ -288,7 +288,7 @@
                             <h3> <%= rset.getString("houseName")%> </h3>
                             <p> <%= rset.getString("address")%> </p> 
                             <p> <%= rset.getString("accomodation")%> </p> 
-                            <p> <%= rset.getString("rate")%> </p> 
+                            <p> RM <%= rset.getString("rate")%> /night </p> 
                             <div class="6u 12u(small)">
                                 <ul class="actions">
                                     <% out.print("<li><a href='booking.jsp?housename=" + rset.getString("houseName") + "&rate=" + rset.getString("rate") + "' class=\"button\">BOOK</a></li>"); %>
