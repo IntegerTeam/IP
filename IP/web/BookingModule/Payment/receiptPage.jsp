@@ -44,13 +44,11 @@
                     <div class="row">
                         <div class="col-xs-6 col-sm-10 col-md-6">
                             <address>
-<!--                                <strong>Elf Cafe</strong>
+                                <strong>Ordered by:</strong>
                                 <br>
-                                2135 Sunset Blvd
+                                <% out.println(session.getAttribute("custEmail")); %>
                                 <br>
-                                Los Angeles, CA 90026
-                                <br>
-                                <abbr title="Phone">P:</abbr> (213) 484-6829-->
+                                <abbr title="Phone">P:</abbr> <% out.println(session.getAttribute("phone")); %>
                             </address>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 text-right">
@@ -75,7 +73,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="col-md-9"><em><% out.println(session.getAttribute("homestay")); %></em></td>
+                                    <td class="col-md-7"><em><% out.println(session.getAttribute("homestay")); %></em></td>
                                     <td class="col-md-2" style="text-align: center"><% out.println(session.getAttribute("sqlStartDate")); %></td>
                                     <td class="col-md-2 text-center"><% out.println(session.getAttribute("sqlEndDate"));%></td>
                                     <td class="col-md-1 text-center"><% out.println(session.getAttribute("totalPay")); %></td>

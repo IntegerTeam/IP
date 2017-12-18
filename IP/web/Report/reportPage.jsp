@@ -137,7 +137,7 @@
 
         $(function () { 
             <% 
-                String query = "select sum(totalPayment) from booking where month(checkOutDate) = ";
+                String query = "select sum(totalPayment) from booking where year(checkOutDate) = 2017 AND month(checkOutDate) = ";
                 float jan = MySQLQuery.getQueryPaymentResult(query + "1;");
                 float feb = MySQLQuery.getQueryPaymentResult(query + "2;"); 
                 float mar = MySQLQuery.getQueryPaymentResult(query + "3;");
