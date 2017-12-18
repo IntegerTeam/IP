@@ -48,7 +48,7 @@ and open the template in the editor.
                 
                 
                 <section class="post">
-                    <form method="post" action="createHomestay" class="alt">
+                    <form method="post" action="createHomestay" enctype="multipart/form-data" class="alt">
                         <div class="row uniform">
                           
                             <div class="12u">
