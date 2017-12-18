@@ -1,3 +1,4 @@
+<%@page import="beans.Staff"%>
 <%@page import="conn.dbConnection"%>
 <%@page import="java.sql.*"%>
 <!DOCTYPE html>
@@ -29,12 +30,14 @@ and open the template in the editor.
 
             <!-- Nav -->
             <nav id="nav">
+                <%Staff staff = (Staff) session.getAttribute("staff"); %>
                 <ul class="links">							
-                    <li class="active"><a href="houseList.html">Homestay</a></li>	
+                    <li><a href='ownerPage.jsp'>Profile</a></li>
+                    <li class="active"><a href="homestayList.jsp">Homestay List</a></li>
+                    <li> <a href="bookingLog.jsp">Booking Log</a></li>
                 </ul>
                 <ul class="icons">	
-                    <li>Currently booking as: </li>
-                    <li><a href="" >Guest</a></li>
+                    Currently login as: <li><a><%=staff.getName()%></a></li>
                 </ul>
             </nav>
 

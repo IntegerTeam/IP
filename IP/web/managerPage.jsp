@@ -142,12 +142,12 @@
             <nav id="nav">
                 <ul class="links">
                     <li class="active"><a href="managerPage.jsp">Profile</a></li>
-                    <li><a href="scheduleM.jsp">Schedule</a></li>
-                    <li><a href="bookingLog.jsp">Booking Log</a></li>	
+                    <% staff = (Staff) session.getAttribute("staff"); %>
+                    <li><a href="scheduleM.jsp">Schedule</a></li>	
                 </ul>
                 <ul class="icons">							
                     <li>Currently log-in as: </li>
-                    <li><a id="myBtn" >Manager</a></li>
+                    <li><a id="myBtn" ><%= staff.getName() %></a></li>
                 </ul>
             </nav>
 
@@ -159,12 +159,12 @@
 
                 <section class="alt">
                     <form action="updateStaff">
-                        <input type="hidden" name="username" id="input1" value="<%= staff.getUsername() %>" />
+                        <input type="hidden" name="username" value="<%= staff.getUsername() %>" />
                         <h3>Name</h3>
-                        <input type="text" name="name" id="input1" value="<%= staff.getName()%>" readonly/><br>
+                        <input type="text" name="name" value="<%= staff.getName()%>" readonly/><br>
 
                         <h3>IC No</h3>
-                        <input type="text" name="icNo" id="input2" value="<%= staff.getIcNo()%>" readonly/><br>
+                        <input type="text" name="icNo" value="<%= staff.getIcNo()%>" readonly/><br>
 
                         <h3>Address</h3>
                         <input type="text" name="address" id="input3" value="<%= staff.getAddress()%>" readonly/><br>
@@ -173,7 +173,7 @@
                         <input type="text" name="telNo" id="input4" value="<%= staff.getTelNo()%>" readonly/><br>
 
                         <h3>Email</h3>
-                        <input type="text" name="email" id="input5" value="<%= staff.getEmail()%>" readonly/><br>
+                        <input type="text" name="email" id="input5" value="<%= staff.getEmail()%>" readonly/><br><br>
                         <input type="button" id="edit" value="Edit">
                         <input type="button" id="cancel" style="display:none" value="Cancel">
                         <input type="submit">
@@ -192,8 +192,6 @@
     <script>
         var btnEdit = document.getElementById("edit");
         var btnCancel = document.getElementById("cancel");
-        var input1 = document.getElementById("input1");
-        var input2 = document.getElementById("input2");
         var input3 = document.getElementById("input3");
         var input4 = document.getElementById("input4");
         var input5 = document.getElementById("input5");
@@ -233,19 +231,6 @@
             modal.style.display = "unset";
         }
 
-        btnRegis.onclick = function () {
-            btnRegis.disabled = true;
-            regis.style.display = "unset";
-            btnLogin.disabled = false;
-            login.style.display = "none";
-        }
-
-        btnLogin.onclick = function () {
-            btnRegis.disabled = false;
-            regis.style.display = "none";
-            btnLogin.disabled = true;
-            login.style.display = "unset";
-        }
 
 // When the user clicks on <span> (x), close the modal
         span.onclick = function () {

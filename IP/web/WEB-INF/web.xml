@@ -32,6 +32,10 @@
         <servlet-name>uploadPicture</servlet-name>
         <servlet-class>servlet.uploadPicture</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>updateCustomer</servlet-name>
+        <servlet-class>servlet.updateCustomer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>approveBooking</servlet-name>
         <url-pattern>/approveBooking</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>uploadPicture</servlet-name>
         <url-pattern>/uploadPicture</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateCustomer</servlet-name>
+        <url-pattern>/updateCustomer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
