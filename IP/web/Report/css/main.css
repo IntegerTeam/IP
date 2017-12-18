@@ -8,15 +8,15 @@
 /*  Opacity  */
 body, html {
   min-height: 100%;
-  position: relative;
-color: #ffffff;
-  background: #ffffff;}
+  position: relative; 
+  color: #4d4d4d;
+  background: #ffffff; }
 
 body {
   margin: 0;
   font: normal 12px 'Open Sans', arial, sans-serif;
-  color: #ffffff;
-  background: #ffffff; }
+  color: #4d4d4d;
+  background: #3d5672; }
 
 a {
   color: black;
@@ -1388,7 +1388,7 @@ h3.panel-title {
 .blog-header {
   position: relative;
   padding: 12px 15px;
-  border: 1px solid #dfe6ee;
+  border: 1px solid ffffff;
   border-bottom: 0; }
   .blog-header p.date-time {
     margin: 0;

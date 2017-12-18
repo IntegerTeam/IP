@@ -123,6 +123,7 @@ public class approveBooking extends HttpServlet {
             HttpSession session = request.getSession(false);
             
             session.setAttribute("homestay", homestay);
+            session.setAttribute("phone", request.getParameter("phone"));
             session.setAttribute("custEmail", custEmail);
             session.setAttribute("sqlStartDate", sqlStartDate);
             session.setAttribute("sqlEndDate", sqlEndDate);
