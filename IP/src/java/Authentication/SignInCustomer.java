@@ -47,7 +47,7 @@ public class SignInCustomer extends HttpServlet {
                         session = request.getSession();                       
                     }                    
                     session.setAttribute("customer", customer);
-                    response.sendRedirect("homestayList.jsp");
+                    response.sendRedirect("customerPage.jsp");
                 } else {
                     response.sendRedirect("index.html");
                 }

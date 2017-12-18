@@ -228,20 +228,25 @@ and open the template in the editor.
 
             <!-- Nav -->
             <nav id="nav">
-                <ul class="links">							
-                    <li class="active"><a href="houseList.html">Homestay</a></li>	
-                </ul>
-                <ul class="icons">	
-                    <li>Currently booking as: </li>
-                        <% Customer customer = (Customer) session.getAttribute("customer");
-                            if (customer != null) {
-                                out.print("<li><a>" + customer.getName() + "</a></li>");
-                            } else {
-                                out.print("<li><a >Guest</a></li>");
-                            }
-                        %>                    
-                </ul>
+
+                <%  Customer customer = (Customer) session.getAttribute("customer");
+                    Staff staff = (Staff) session.getAttribute("staff");
+                    if (customer != null) {
+                        out.print("<ul class='links'>");
+                        out.print("<li><a href='customerPage.jsp'>Profile</a></li>");
+                        out.print("<li class='active'><a href='homestayList.jsp'>Homestay List</a></li>");
+                        out.print("<li> <a href='custHistory.jsp'>Booking History</a></li></ul>");
+                        out.print("<ul class='icons'>");
+                        out.print("Currently logged in as :<li><a id=\"myBtn2\">" + customer.getName() + "</a></li></ul>");
+                    } else {
+                        out.print("<ul class='links'></ul>");
+                        out.print("<ul class='icons'>");
+                        out.print("Currently booking as:<li><a id=\"myBtn\" >Guest</a></li></ul>");
+                    }
+                %>
+
             </nav>
+
 
             <!-- Main -->
             <div id="main">
