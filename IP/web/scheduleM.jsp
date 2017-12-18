@@ -24,22 +24,15 @@
         <script src='lib/jquery.min.js'></script>
         <script src='lib/moment.min.js'></script>
         <script src='lib/fullcalendar.min.js'></script>
-        
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/skel.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        
-        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/jquery.scrolly.min.js"></script>
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+        <link rel="stylesheet" href="assets/css/main.css" /> 
         <link href='lib/fullcalendar.min.css' rel='stylesheet' />
         <link href='lib/fullcalendar.print.min.css' rel='stylesheet' media='print' />        
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>        
         
         <style>
             /* The Modal (background) */
@@ -88,7 +81,7 @@
             .modal2 {
                 display: none; /* Hidden by default */
                 position: fixed; /* Stay in place */
-                z-index: 2; /* Sit on top */
+                z-index: 3; /* Sit on top */
                 padding-top: 100px; /* Location of the box */
                 left: 0;
                 top: 0;
@@ -334,11 +327,11 @@
                 <ul class="links">
                     <li><a href="managerPage.jsp">Profile</a></li>
                     <li class="active"><a href="scheduleM.jsp">Schedule</a></li>
-                    <li><a href="bookingLog.jsp">Booking Log</a></li>	
                 </ul>
                 <ul class="icons">							
                     <li>Currently log-in as: </li>
-                    <li><a id="myBtn" >Manager</a></li>
+                    <% staff = (Staff) session.getAttribute("staff"); %>
+                    <li><a id="myBtn" ><%= staff.getName() %></a></li>
                 </ul>
             </nav>
 
@@ -376,26 +369,12 @@
 // When the user clicks the button, open the modal 
         btn.onclick = function () {
             modal.style.display = "unset";
-        }
-
-        btnRegis.onclick = function () {
-            btnRegis.disabled = true;
-            regis.style.display = "unset";
-            btnLogin.disabled = false;
-            login.style.display = "none";
-        }
-
-        btnLogin.onclick = function () {
-            btnRegis.disabled = false;
-            regis.style.display = "none";
-            btnLogin.disabled = true;
-            login.style.display = "unset";
-        }
+        };
 
 // When the user clicks on <span> (x), close the modal
         span.onclick = function () {
             modal.style.display = "none";
-        }
+        };
 
 // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {

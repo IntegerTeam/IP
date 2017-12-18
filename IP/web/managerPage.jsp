@@ -142,12 +142,12 @@
             <nav id="nav">
                 <ul class="links">
                     <li class="active"><a href="managerPage.jsp">Profile</a></li>
-                    <li><a href="scheduleM.jsp">Schedule</a></li>
-                    <li><a href="bookingLog.jsp">Booking Log</a></li>	
+                    <% staff = (Staff) session.getAttribute("staff"); %>
+                    <li><a href="scheduleM.jsp">Schedule</a></li>	
                 </ul>
                 <ul class="icons">							
                     <li>Currently log-in as: </li>
-                    <li><a id="myBtn" >Manager</a></li>
+                    <li><a id="myBtn" ><%= staff.getName() %></a></li>
                 </ul>
             </nav>
 
@@ -231,19 +231,6 @@
             modal.style.display = "unset";
         }
 
-        btnRegis.onclick = function () {
-            btnRegis.disabled = true;
-            regis.style.display = "unset";
-            btnLogin.disabled = false;
-            login.style.display = "none";
-        }
-
-        btnLogin.onclick = function () {
-            btnRegis.disabled = false;
-            regis.style.display = "none";
-            btnLogin.disabled = true;
-            login.style.display = "unset";
-        }
 
 // When the user clicks on <span> (x), close the modal
         span.onclick = function () {
