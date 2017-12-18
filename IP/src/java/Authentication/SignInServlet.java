@@ -29,7 +29,7 @@ public class SignInServlet extends HttpServlet {
                 Connection con;
                 con = MySQL.getMySQLConnection();
 
-                PreparedStatement pst = con.prepareStatement("Select * from staff where username=? and password=?");
+                PreparedStatement pst = con.prepareStatement("Select * from staff where BINARY username=? and password=?");
                 pst.setString(1, username);
                 pst.setString(2, password);
 
