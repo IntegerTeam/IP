@@ -83,24 +83,24 @@
                                     <td> &nbsp; </td>
                                     <td class="text-right">
                                         <p>
-                                            <strong>Subtotal:&nbsp;</strong>
+                                            <strong>Subtotal(RM):&nbsp;</strong>
                                         </p>
                                         <p>
-                                            <strong>Tax:&nbsp;</strong>
+                                            <strong>Tax(RM):&nbsp;</strong>
                                         </p></td>
                                     <td class="text-center">
                                         <p>
-                                            <strong>$<% out.println(session.getAttribute("totalPay")); %></strong>
+                                            <strong><% out.println(session.getAttribute("totalPay")); %></strong>
                                         </p>
                                         <p>
-                                            <strong>$0</strong>
+                                            <strong>0</strong>
                                         </p></td>
                                 </tr>
                                 <tr>
                                     <td> &nbsp; </td>
                                     <td> &nbsp; </td>
                                     <td class="text-right"><h4><strong>Total:&nbsp;</strong></h4></td>
-                                    <td class="text-center text-danger"><h4><strong>$<% out.println(session.getAttribute("totalPay")); %></strong></h4></td>
+                                    <td class="text-center text-danger"><h4><strong>RM<% out.println(session.getAttribute("totalPay")); %></strong></h4></td>
                                 </tr>
                             </tbody>
                         </table>
