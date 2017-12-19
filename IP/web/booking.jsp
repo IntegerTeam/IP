@@ -283,7 +283,7 @@ and open the template in the editor.
                             </div>
 
                             <div class="12u" >
-                                <input id="myBtn" class="logo" type="button" value="Submit Booking"/>
+                                <input id="submitBtn" class="logo" type="button" value="Submit Booking"/>
                             </div>
 
 
@@ -374,7 +374,7 @@ and open the template in the editor.
             }
             var modal = document.getElementById("myModal");
             var span = document.getElementsByClassName("close")[0];
-            var btn = document.getElementById("myBtn");
+            var btn = document.getElementById("submitBtn");
             btn.onclick = function () {
                 var start = Date.parse(document.getElementById("start").value);
                 var end = Date.parse(document.getElementById("end").value);

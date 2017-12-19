@@ -34,4 +34,28 @@ public class MySQLQuery {
             
             return result;
     }
+    
+    public static String getQuerytResult(String query,boolean noDecimal){
+        
+            Connection conn = null;
+            String result = "";
+            try {
+                conn = dbConnection.getConnection();
+                String sql = query;
+                Statement stmt = conn.createStatement();
+                ResultSet rset = stmt.executeQuery(sql);
+                
+                while(rset.next()){
+                    if (noDecimal)
+                        result = Integer.toString(rset.getInt(1));
+                    else
+                        result = String.format("%.2f", (rset.getFloat(1)));
+                }
+                
+            } catch (Exception e) {
+                System.out.println("Unable to connect to database<br>");
+            }
+            
+            return result;
+    }
 }

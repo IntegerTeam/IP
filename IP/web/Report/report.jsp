@@ -105,8 +105,9 @@
 
             <!-- Main -->
             <div id="main">
-                <iframe  src="reportPage.jsp" name="targetframe" allowTransparency="true" scrolling="auto" frameborder="0" width="100%" style="height:30em"></iframe>
-   
+                <iframe  src="reportPage.jsp" name="targetframe" allowTransparency="true" scrolling="no" frameborder="0" width="70%" marginwidth ="0" style="height:30em"></iframe>
+                <iframe  src="totalReportList.jsp" name="targetframe" allowTransparency="true" scrolling="no" frameborder="0" width="20%" marginwidth ="0" style="height:30em"></iframe>
+                <iframe  src="userReportPage.jsp" name="targetframe" allowTransparency="true" scrolling="auto" frameborder="0" width="100%" marginwidth ="0" style="height:30em"></iframe>
             </div>
 
             <!-- Copyright -->
